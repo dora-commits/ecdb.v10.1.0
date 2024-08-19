@@ -280,6 +280,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/product">
+                                    <svg class="bi">
+                                        <use xlink:href="#cart" />
+                                    </svg>
+                                    Product
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="#">
                                     <svg class="bi">
                                         <use xlink:href="#people" />

@@ -249,8 +249,17 @@ class AdminController extends Controller
         $data = [];
         AdminAuthMiddleware::setUsername($data);
         $productModel = new ProductModel();
-        $data['products'] = $productModel->findAll();
+        $data['products'] = $productModel->findAll_products();
         $this->view('admin/product', $data);
+    }
+
+    public function product_edit()
+    {
+
+    }
+
+    public function product_delete(){
+        
     }
 }
 

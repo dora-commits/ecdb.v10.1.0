@@ -23,4 +23,15 @@ class ProductModel
 
         return false;
     }
+
+    public function findAll_products()
+    {
+        $query = "SELECT products.*, category.name as category_name 
+                FROM products 
+                JOIN category ON products.catid = category.id 
+                ORDER BY {$this->order_column} {$this->order_type} 
+                LIMIT {$this->limit} OFFSET {$this->offset}";
+
+        return $this->query($query);
+    }
 }

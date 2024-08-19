@@ -280,6 +280,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/product">
+                                    <svg class="bi">
+                                        <use xlink:href="#cart" />
+                                    </svg>
+                                    Product
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="#">
                                     <svg class="bi">
                                         <use xlink:href="#people" />
@@ -374,7 +382,7 @@
             </div>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Dashboard</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
@@ -390,9 +398,12 @@
                     </div>
                 </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
-                <h2>Categories</h2>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Products</h1>
+                </div>
+                <!-- <h2>Products</h2> -->
                 <!-- Display the error message if it exists -->
                 <?php if (!empty($data['error'])): ?>
                     <div class="alert alert-danger">
@@ -404,31 +415,42 @@
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Edit</th>
-                                    <th scope="col">Delete</th>
+                                    <th scope="col" style="text-align: center;">No.</th>
+                                    <th scope="col" style="text-align: center;">Name</th>
+                                    <th scope="col" style="text-align: center;">Type</th>
+                                    <th scope="col" style="text-align: center;">Price</th>
+                                    <th scope="col" style="text-align: center;">Thumb</th>
+                                    <th scope="col" style="text-align: center;">Description</th>
+                                    <th scope="col" style="text-align: center;">Edit</th>
+                                    <th scope="col" style="text-align: center;">Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($categories)): ?>
-                                    <?php foreach ($categories as $category): ?>
+                                <?php if (!empty($products)): ?>
+                                    <?php foreach ($products as $product): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($category->id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td><?php echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td><a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($category->id); ?>">Edit</a> </td>
-                                            <td><a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/<?php echo htmlspecialchars($category->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                            <td><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><?php echo htmlspecialchars($product->price, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>" width="100"></td>
+                                            <td><?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><a href="<?= $_ENV['ROOT'] ?>/admin/product_edit/<?php echo htmlspecialchars($product->id); ?>">Edit</a> </td>
+                                            <td><a href="<?= $_ENV['ROOT'] ?>/admin/product_delete/<?php echo htmlspecialchars($product->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="2">No categories found.</td>
+                                        <td colspan="2">No products found.</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
-                    <a href="<?= $_ENV['ROOT'] ?>/admin/category_add" class="btn btn-primary">Add new category</a>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <a href="<?= $_ENV['ROOT'] ?>/admin/product_add" class="btn btn-primary">Add new product</a>
+                    </div>
+                    <!-- <a href="<?= $_ENV['ROOT'] ?>/admin/product_add" class="btn btn-primary">Add new product</a> -->
                 </div>
                 
             </main>
