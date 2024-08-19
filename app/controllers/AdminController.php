@@ -139,7 +139,7 @@ class AdminController extends Controller
             }
         } else {
             // Show the creation form
-            $this->view('admin/category_add');
+            $this->view('admin/category_add', $data);
         }
     }
 
@@ -174,7 +174,7 @@ class AdminController extends Controller
     {
         $data = [];
         AdminAuthMiddleware::setUsername($data);
-        
+
         $categoryModel = new CategoryModel();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -218,7 +218,7 @@ class AdminController extends Controller
         $categoryModel = new CategoryModel();
         $result = $categoryModel->delete($id);
 
-        if ($result) {
+        if (gettype($result) != "boolean") {
             // Redirect or notify success
             redirect('admin/category');
         } else {
