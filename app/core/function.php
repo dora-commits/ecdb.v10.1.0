@@ -9,6 +9,8 @@ function show($data)
 
 function redirect($path)
 {
+    // show($path);
     header("Location: " .$_ENV['ROOT']."/".$path);
+    // show("Location: " .$_ENV['ROOT']."/".$path);
     die;
 }

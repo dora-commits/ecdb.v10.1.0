@@ -17,6 +17,7 @@ class AdminAuthMiddleware
     
     public static function setUsername(&$data)
     {
-        $data['username'] = $_SESSION['ADMIN']->admin_name ?? 'Admin';
+        $data['username'] = $_SESSION['ADMIN']->firstname ?? 'Admin';
+        return isset($_SESSION['ADMIN']);
     }
 }
