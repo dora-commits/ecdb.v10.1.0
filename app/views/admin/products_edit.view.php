@@ -401,7 +401,7 @@
                 <canvas class="my-4 w-100" id="myChart" width="900" height="190"></canvas> -->
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Products</h1>
+                    <h1 class="h2">Edit Products</h1>
                 </div>
                 <!-- <h2>Edit Category</h2> -->
                 <form action="<?= $_ENV['ROOT'] ?>/admin/products_edit/<?php echo htmlspecialchars($data['products']->id); ?>" method="post">
