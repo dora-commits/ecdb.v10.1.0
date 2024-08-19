@@ -16,7 +16,7 @@ class HomeController extends Controller
         
         // show($d->first($arr));
 
-        $arr['firstname'] = 'Truong Giang';
+        // $arr['firstname'] = 'Truong Giang';
         // $arr['lastname'] = 'Pham';
         // $arr['email'] = 'giang@gmail.com';
         // $arr['password'] = '88888888';
