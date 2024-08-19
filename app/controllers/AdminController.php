@@ -253,6 +253,37 @@ class AdminController extends Controller
         $this->view('admin/products', $data);
     }
 
+    public function products_add()
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'name' => $_POST['name'],
+                'catid' => $_POST['catid'],
+                'price' => $_POST['price'],
+                'thumb' => $_POST['thumb'],
+                'description' => $_POST['description']
+            ];
+
+            $productModel = new ProductModel();
+            $result = $productModel->insert($data);
+
+            if (gettype($result) != "boolean") {
+                // Redirect or notify success
+                redirect('admin/products');
+            } else {
+                // Handle error
+                $data['error'] = 'Failed to create product.';
+                $this->view('admin/products', $data);
+            }
+        } else {
+            // Show the creation form
+            $this->view('admin/products_add', $data);
+        }
+    }
+
     public function products_edit($id)
     {
         $data = [];
@@ -298,8 +329,34 @@ class AdminController extends Controller
         }
     }
 
-    public function products_delete(){
+    public function products_delete($id){
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
 
+        $productModel = new ProductModel();
+
+        // Check if the product has references
+        if ($productModel->hasReferences($id)) {
+            $product = $productModel->where(['id'=> $id]);
+
+            $name_product = $product[0]->{"name"};
+
+            $data['error'] = "Cannot delete product: {$name_product}. It is referenced by orderitem.";
+            // redirect('admin/category', $data);
+            $this->view('admin/products', $data);
+            return;
+        }
+
+        $result = $productModel->delete($id);
+
+        if (gettype($result) != "boolean") {
+            // Redirect or notify success
+            redirect('admin/products');
+        } else {
+            // Handle error
+            $data['error'] = 'Failed to delete product.';
+            $this->view('admin/products', $data);
+        }
     }
 }
 
