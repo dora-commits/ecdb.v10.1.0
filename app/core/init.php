@@ -1,8 +1,20 @@
 <?php
 
-spl_autoload_register(function($class_name){
-    require $filename = "../app/models/".ucfirst($class_name).".php";
+spl_autoload_register(function($class_name) {
+    $directories = [
+        '../app/models/',
+        '../app/middleware/',
+    ];
+
+    foreach ($directories as $directory) {
+        $filename = $directory . ucfirst($class_name) . ".php";
+        if (file_exists($filename)) {
+            require $filename;
+            return; // Stop further searching once the class is found
+        }
+    }
 });
+
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 use Dotenv\Dotenv;
