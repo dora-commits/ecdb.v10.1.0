@@ -401,8 +401,17 @@
                 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Products</h1>
+                    <!-- <h1 class="h2">Products</h1> -->
+                
+                <!--  -->
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/products" style="font-weight: bold; font-size: 1.1rem; color: blue;">
+                            <svg class="bi" width="24" height="24" fill="blue"> 
+                                <use xlink:href="#cart" />
+                            </svg>
+                            Products
+                    </a>
                 </div>
+                <!--  -->
                 <!-- <h2>Products</h2> -->
                 <!-- Display the error message if it exists -->
                 <?php if (!empty($data['error'])): ?>
@@ -412,31 +421,38 @@
                 <?php endif; ?>
 
                     <div class="table-responsive small">
-                        <table class="table table-striped table-sm">
-                            <thead>
+                        <table class="table table-striped table-sm table-hover table-bordered caption-top">
+                        <!-- <caption>List of Products</caption> -->
+                            <thead class="table-dark">
                                 <tr>
-                                    <th scope="col" style="text-align: center;">No.</th>
+                                    <th scope="col" style="text-align: center; width: 100px;">No.</th>
                                     <th scope="col" style="text-align: center;">Name</th>
-                                    <th scope="col" style="text-align: center;">Type</th>
-                                    <th scope="col" style="text-align: center;">Price</th>
+                                    <th scope="col" style="text-align: center; width: 100px;">Type</th>
+                                    <th scope="col" style="text-align: center; width: 100px;">Price</th>
                                     <th scope="col" style="text-align: center;">Thumb</th>
                                     <th scope="col" style="text-align: center;">Description</th>
-                                    <th scope="col" style="text-align: center;">Edit</th>
-                                    <th scope="col" style="text-align: center;">Delete</th>
+                                    <th scope="col" style="text-align: center;  width: 100px;">Edit</th>
+                                    <th scope="col" style="text-align: center;  width: 100px;">Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if (!empty($products)): ?>
                                     <?php foreach ($products as $product): ?>
                                         <tr>
-                                            <th><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></th>
+                                            <th style="text-align: center;"><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></th>
                                             <td><?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td><?php echo htmlspecialchars($product->price, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td style="text-align: center;"><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <!-- <td style="text-align: center;"><?php echo htmlspecialchars($product->price, ENT_QUOTES, 'UTF-8'); ?></td> -->
+                                            <!-- <td style="text-align: center;">
+                                                <?php echo htmlspecialchars(number_format($product->price, 0, ',', '.') . ' USD', ENT_QUOTES, 'UTF-8'); ?>
+                                            </td> -->
+                                            <td style="text-align: center;">
+                                                <?php echo htmlspecialchars('$' . number_format($product->price, 2, '.', ','), ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
                                             <td><img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>" width="100"></td>
                                             <td><?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td><a href="<?= $_ENV['ROOT'] ?>/admin/products_edit/<?php echo htmlspecialchars($product->id); ?>">Edit</a> </td>
-                                            <td><a href="<?= $_ENV['ROOT'] ?>/admin/products_delete/<?php echo htmlspecialchars($product->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                            <td style="text-align: center;"><a href="<?= $_ENV['ROOT'] ?>/admin/products_edit/<?php echo htmlspecialchars($product->id); ?>">Edit</a> </td>
+                                            <td style="text-align: center;"><a href="<?= $_ENV['ROOT'] ?>/admin/products_delete/<?php echo htmlspecialchars($product->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
