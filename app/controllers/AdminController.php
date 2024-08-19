@@ -244,22 +244,62 @@ class AdminController extends Controller
         }
     }
 
-    public function product()
+    public function products()
     {
         $data = [];
         AdminAuthMiddleware::setUsername($data);
         $productModel = new ProductModel();
         $data['products'] = $productModel->findAll_products();
-        $this->view('admin/product', $data);
+        $this->view('admin/products', $data);
     }
 
-    public function product_edit()
+    public function products_edit($id)
     {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
 
+        $productModel = new ProductModel();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validate and sanitize the input data
+            $data = [
+                'name' => $_POST['name'],
+                'catid' => $_POST['catid'],
+                'price' => $_POST['price'],
+                'thumb' => $_POST['thumb'],
+                'description' => $_POST['description']
+            ];
+
+            // Update the product
+            $result = $productModel->update($id, $data);
+
+            if (gettype($result) != "boolean") {
+                // Redirect to the product list after a successful update
+                redirect('admin/products');
+            } else {
+                // TODO: No checked feature
+                // If update fails, display the error
+                $data['error'] = 'Failed to update product.';
+                $data['products'] = $productModel->first(['id' => $id]);
+                $this->view('admin/products_edit', $data);
+            }
+        } else {
+            // TODO: No checked feature
+            // Handle GET request to fetch the existing product data
+            $data['products'] = $productModel->first(['id' => $id]);
+            
+            if (!$data['products']) {
+                // Handle case where product is not found
+                $data['error'] = 'Product not found.';
+                $this->view('admin/products', $data);
+            } else {
+                $this->view('admin/products_edit', $data);
+            }
+        }
     }
 
-    public function product_delete(){
-        
+    public function products_delete(){
+
     }
 }
 

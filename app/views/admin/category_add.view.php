@@ -280,6 +280,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/products">
+                                    <svg class="bi">
+                                        <use xlink:href="#cart" />
+                                    </svg>
+                                    Products
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="#">
                                     <svg class="bi">
                                         <use xlink:href="#people" />
@@ -396,15 +404,18 @@
                     <h1 class="h2">Categories</h1>
                 </div>
                 <!-- <h2>Add Category</h2> -->
-                    <form action="<?= $_ENV['ROOT'] ?>/admin/category_add" method="post">
-                        <div class="form-group">
-                            <label for="name"><strong>Name</strong></label><br>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                            <br>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
+                <form action="<?= $_ENV['ROOT'] ?>/admin/category_add" method="post">
+                    <div class="form-group">
+                        <label for="name"><strong>Name</strong></label><br>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                        <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+                <!-- <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a> -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a>
+                </div>
             </main>
         </div>
     </div>

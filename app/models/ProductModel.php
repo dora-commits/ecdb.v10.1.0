@@ -7,7 +7,7 @@ class ProductModel
 {
     use Model; // Assuming Model trait is used here
 
-    protected $table = 'product';
+    protected $table = 'products';
 
     /**
      * If product has more one orderitems, we can not delete that product from database
