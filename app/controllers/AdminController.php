@@ -62,8 +62,22 @@ class AdminController extends Controller
         redirect('admin/login');
     }
 
-    public function signup(){
+    public function signup()
+    {
+        $data = [];
 
+        if ($_SERVER['REQUEST_METHOD'] == "POST")
+        {
+            $admin =  new AdminModel;
+            if ($admin->validateSignup($_POST))
+            {
+                $admin->insert($_POST);
+                redirect('admin/dashboard');
+            }
+    
+            $data['errors'] = $admin->errors;
+        }
+        $this->view('admin/signup', $data);
     }
 }
 
