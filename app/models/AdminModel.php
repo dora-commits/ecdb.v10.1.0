@@ -9,7 +9,6 @@ class AdminModel
 
     protected $table = 'admin';
     protected $allowedColumns = [
-        'id',
         'firstname',
         'lastname',
         'email',

@@ -14,6 +14,18 @@ class HomeController extends Controller
         // $arr['lastname'] = 'Hartman';
         // show($d->where($arr));
         
+        // show($d->first($arr));
+
+        $arr['firstname'] = 'Truong Giang';
+        // $arr['lastname'] = 'Pham';
+        // $arr['email'] = 'giang@gmail.com';
+        // $arr['password'] = '88888888';
+        // $d->insert($arr);
+
+        // $d->update(1, $arr);
+
+        // $d->delete(1);
+
         $this->view('home');
     }
 }

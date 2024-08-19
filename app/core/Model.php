@@ -54,6 +54,30 @@ Trait Model
         return $result ? $result[0] : false;
     }
 
+    public function insert($data)
+    {
+        $data = $this->filterAllowedColumns($data);
+        $columns = implode(",", array_keys($data));
+        $placeholders = ":" . implode(", :", array_keys($data));
+        $query = "INSERT INTO {$this->table} ({$columns}) VALUES ({$placeholders})";
+        return $this->query($query, $data);
+    }
+
+    public function update($id, $data, $id_column = 'id')
+    {
+        $data = $this->filterAllowedColumns($data);
+        $setClauses = $this->buildSetClauses($data);
+        $query = "UPDATE {$this->table} SET {$setClauses} WHERE {$id_column} = :{$id_column}";
+        $data[$id_column] = $id;
+        return $this->query($query, $data);
+    }
+
+    public function delete($id, $id_column = 'id')
+    {
+        $query = "DELETE FROM {$this->table} WHERE {$id_column} = :{$id_column}";
+        return $this->query($query, [$id_column => $id]);
+    }
+
     private function buildWhereClauses($data, $data_not)
     {
         $clauses = [];
@@ -64,5 +88,24 @@ Trait Model
             $clauses[] = "{$key} != :{$key}";
         }
         return implode(" AND ", $clauses);
+    }
+
+    private function filterAllowedColumns($data)
+    {
+        if (!empty($this->allowedColumns)) {
+            return array_filter($data, function ($key) {
+                return in_array($key, $this->allowedColumns);
+            }, ARRAY_FILTER_USE_KEY);
+        }
+        return $data;
+    }
+
+    private function buildSetClauses($data)
+    {
+        $clauses = [];
+        foreach ($data as $key => $value) {
+            $clauses[] = "{$key} = :{$key}";
+        }
+        return implode(", ", $clauses);
     }
 }
