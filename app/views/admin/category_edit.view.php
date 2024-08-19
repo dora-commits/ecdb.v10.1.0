@@ -383,7 +383,14 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
+                    <!-- <h1 class="h2">Dashboard</h1> -->
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
+                        <svg class="bi" width="24" height="24" fill="blue"> 
+                            <use xlink:href="#cart" />
+                        </svg>
+                        Category
+                    </a>
+
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -398,11 +405,16 @@
                     </div>
                 </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="190"></canvas>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="235"></canvas>
 
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Categories</h1>
+                </div> -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <!-- <h1 class="h2">Categories</h1> -->
+                    <kbd><caption>Update Category</caption></kbd>
                 </div>
+
                 <!-- <h2>Edit Category</h2> -->
                 <form action="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($data['category']->id); ?>" method="post">
                     <div class="form-group">
