@@ -383,7 +383,21 @@
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
+                    <!-- <h1 class="h2">Dashboard</h1> -->
+                    <!-- <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category">
+                        <svg class="bi">
+                            <use xlink:href="#cart" />
+                        </svg>
+                        Category
+                    </a> -->
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
+                        <svg class="bi" width="24" height="24" fill="blue"> 
+                            <use xlink:href="#cart" />
+                        </svg>
+                        Category
+                    </a>
+
+                    <!--  -->
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -401,7 +415,7 @@
                 <canvas class="my-4 w-100" id="myChart" width="900" height="190"></canvas>
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Categories</h1>
+                    <!-- <h1 class="h2">Categories</h1> -->
                 </div>
                 <!-- <h2>Categories</h2> -->
                 <!-- Display the error message if it exists -->
@@ -412,8 +426,10 @@
                 <?php endif; ?>
 
                     <div class="table-responsive small">
-                        <table class="table table-striped table-sm">
-                            <thead>
+                        <table class="table table-striped table-sm table-hover table-bordered caption-top">
+                            <caption>List of Categories</caption>
+                            <thead class="table-dark"> 
+                            <!-- <thead class="table-light"> -->
                                 <tr>
                                     <th scope="col" style="text-align: center;">No.</th>
                                     <th scope="col" style="text-align: center;">Name</th>
