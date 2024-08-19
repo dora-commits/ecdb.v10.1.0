@@ -3,9 +3,9 @@
 /**
  *  class HomeController
  */
-class HomeController 
+class HomeController extends Controller
 {
     public function index(){
-        echo "This is HomeController";
+        $this->view('home');
     }
 }
