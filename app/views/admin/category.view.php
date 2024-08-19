@@ -393,6 +393,13 @@
                 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
                 <h2>Categories</h2>
+                <!-- Display the error message if it exists -->
+                <?php if (!empty($data['error'])): ?>
+                    <div class="alert alert-danger">
+                        <?= htmlspecialchars($data['error']); ?>
+                    </div>
+                <?php endif; ?>
+
                     <div class="table-responsive small">
                         <table class="table table-striped table-sm">
                             <thead>

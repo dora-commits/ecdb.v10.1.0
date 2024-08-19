@@ -215,7 +215,23 @@ class AdminController extends Controller
     // Method to handle deleting a category
     public function category_delete($id)
     {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+
         $categoryModel = new CategoryModel();
+
+        // Check if the category has references
+        if ($categoryModel->hasReferences($id)) {
+            $category = $categoryModel->where(['id'=> $id]);
+
+            $name_category = $category[0]->{"name"};
+            
+            $data['error'] = "Cannot delete category: {$name_category}. It is referenced by products.";
+            // redirect('admin/category', $data);
+            $this->view('admin/category', $data);
+            return;
+        }
+
         $result = $categoryModel->delete($id);
 
         if (gettype($result) != "boolean") {
