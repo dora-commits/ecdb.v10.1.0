@@ -23,4 +23,12 @@ class CategoryModel
 
         return false;
     }
+
+    public function countAll()
+    {
+        $query = "SELECT COUNT(*) as total FROM $this->table";
+        $result = $this->query($query);
+        $num = $result[0]->{"total"};
+        return $num;
+    }
 }

@@ -17,8 +17,13 @@ class AdminController extends Controller
         $data = [];
 
         $productModel = new ProductModel();
+        $categoryModel = new CategoryModel();
+        $userModel = new UserModel();
 
         $data['count_products'] = $productModel->countAll();
+        $data['count_category'] = $categoryModel->countAll();
+        $data['count_users'] = $userModel->countAll();
+
         
         // // Fetch other necessary data and then load the view
         // $this->view('admin/dashboard', $data);
