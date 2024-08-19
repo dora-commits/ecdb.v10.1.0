@@ -13,3 +13,4 @@ require 'function.php';
 require 'Route.php';
 require 'Controller.php';
 require 'Database.php';
+require 'Model.php';
