@@ -13,9 +13,11 @@ class Route
     public function __construct() {
         $url = $this->parseUrl();
 
-        if (file_exists('../app/controllers/' . ucfirst($url[0]) . 'Controller.php')) {
+        if (!is_null($url) && file_exists('../app/controllers/' . ucfirst($url[0]) . 'Controller.php')) {
             $this->controller = ucfirst($url[0]) . 'Controller';
             unset($url[0]);
+        } else {
+                $this->controller = '_404Controller';
         }
 
         require_once '../app/controllers/' . $this->controller . '.php';
