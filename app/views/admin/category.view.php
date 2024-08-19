@@ -550,7 +550,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <a href="<?= $_ENV['ROOT'] ?>/admin/category_add" class="btn btn-primary">Add new category</a>
                 </div>
+                
             </main>
         </div>
     </div>
