@@ -6,10 +6,10 @@
 Trait Model
 {
     use Database;
-    protected $table = 'admin';
+    // protected $table = 'admin';
     protected $limit = 10;
     protected $offset = 0;
-    protected $order_type = "desc";
+    protected $order_type = "asc"; //asc/desc
     protected $order_column = "id";
     public $errors = [];
 
@@ -20,7 +20,9 @@ Trait Model
         $check = $stm->execute($data);
 
         if ($check) {
-            return $stm->fetchAll(PDO::FETCH_OBJ) ?: false;
+            // return $stm->fetchAll(PDO::FETCH_OBJ) ?: false;
+            // TODO: Fixed return false when update/edit data in table.
+            return $stm->fetchAll(PDO::FETCH_OBJ);
         }
 
         return false;

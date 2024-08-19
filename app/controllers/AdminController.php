@@ -84,7 +84,142 @@ class AdminController extends Controller
     {
         $data = [];
         AdminAuthMiddleware::setUsername($data);
+        $categoryModel = new CategoryModel();
+        $data['categories'] = $categoryModel->findAll();
         $this->view('admin/category', $data);
+    }
+
+    // public function category()
+    // {
+    //     $data = [];
+    //     AdminAuthMiddleware::setUsername($data);
+    //     $categoryModel = new CategoryModel();
+
+    //     // Handle ordering
+    //     // $orderColumn = isset($_GET['order_column']) ? $_GET['order_column'] : 'name';
+    //     // $orderType = isset($_GET['order_type']) ? $_GET['order_type'] : 'asc';
+
+    //     // $validColumns = ['id', 'name'];
+    //     // $validTypes = ['asc', 'desc'];
+
+    //     // if (in_array($orderColumn, $validColumns)) {
+    //     //     $categoryModel->setOrderColumn($orderColumn);
+    //     // }
+
+    //     // if (in_array($orderType, $validTypes)) {
+    //     //     $categoryModel->setOrderType($orderType);
+    //     // }
+
+    //     // Fetch categories
+    //     $data['categories'] = $categoryModel->findAll();
+    //     $this->view('admin/category', $data);
+    // }
+
+    // Method to handle the creation of a category
+    // public function createCategory()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         $data = [
+    //             'name' => $_POST['name']
+    //         ];
+
+    //         $categoryModel = new CategoryModel();
+    //         $result = $categoryModel->create($data);
+
+    //         if ($result) {
+    //             // Redirect or notify success
+    //             redirect('admin/category');
+    //         } else {
+    //             // Handle error
+    //             $data['error'] = 'Failed to create category.';
+    //             $this->view('admin/category', $data);
+    //         }
+    //     } else {
+    //         // Show the creation form
+    //         $this->view('admin/category_create');
+    //     }
+    // }
+
+    // Method to handle updating a category
+    // public function updateCategory($id)
+    // {
+    //     $categoryModel = new CategoryModel();
+
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //         $data = [
+    //             'name' => $_POST['name']
+    //         ];
+
+    //         $result = $categoryModel->update($id, $data);
+
+    //         if ($result) {
+    //             // Redirect or notify success
+    //             redirect('admin/category');
+    //         } else {
+    //             // Handle error
+    //             $data['errors'] = 'Failed to update category.';
+    //             $this->view('admin/category', $data);
+    //         }
+    //     } else {
+    //         // Fetch existing category data
+    //         $data['categories'] = $categoryModel->first(['id' => $id]);
+    //         $this->view('admin/category', $data);
+    //     }
+    // }
+
+    public function category_edit($id)
+    {
+        $categoryModel = new CategoryModel();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validate and sanitize the input data
+            $data = [
+                'name' => $_POST['name']
+            ];
+
+            // Update the category
+            $result = $categoryModel->update($id, $data);
+
+            if (gettype($result) != "boolean") {
+                // Redirect to the category list after a successful update
+                redirect('admin/category');
+            } else {
+                // TODO: No checked feature
+                // If update fails, display the error
+                $data['error'] = 'Failed to update category.';
+                $data['category'] = $categoryModel->first(['id' => $id]);
+                $this->view('admin/category_edit', $data);
+            }
+        } else {
+            // TODO: No checked feature
+            // Handle GET request to fetch the existing category data
+            $data['category'] = $categoryModel->first(['id' => $id]);
+            
+            if (!$data['category']) {
+                // Handle case where category is not found
+                $data['error'] = 'Category not found.';
+                $this->view('admin/category', $data);
+            } else {
+                $this->view('admin/category_edit', $data);
+            }
+        }
+    }
+
+
+    // Method to handle deleting a category
+    public function category_delete($id)
+    {
+        $categoryModel = new CategoryModel();
+        $result = $categoryModel->delete($id);
+
+        if ($result) {
+            // Redirect or notify success
+            redirect('admin/category');
+        } else {
+            // Handle error
+            $data['error'] = 'Failed to delete category.';
+            $this->view('admin/category', $data);
+        }
     }
 }
 
