@@ -79,6 +79,13 @@ class AdminController extends Controller
         }
         $this->view('admin/signup', $data);
     }
+
+    public function category()
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+        $this->view('admin/category', $data);
+    }
 }
 
 
