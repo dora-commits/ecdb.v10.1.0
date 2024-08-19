@@ -116,29 +116,32 @@ class AdminController extends Controller
     // }
 
     // Method to handle the creation of a category
-    // public function createCategory()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $data = [
-    //             'name' => $_POST['name']
-    //         ];
+    public function category_add()
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
 
-    //         $categoryModel = new CategoryModel();
-    //         $result = $categoryModel->create($data);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'name' => $_POST['name']
+            ];
 
-    //         if ($result) {
-    //             // Redirect or notify success
-    //             redirect('admin/category');
-    //         } else {
-    //             // Handle error
-    //             $data['error'] = 'Failed to create category.';
-    //             $this->view('admin/category', $data);
-    //         }
-    //     } else {
-    //         // Show the creation form
-    //         $this->view('admin/category_create');
-    //     }
-    // }
+            $categoryModel = new CategoryModel();
+            $result = $categoryModel->insert($data);
+
+            if (gettype($result) != "boolean") {
+                // Redirect or notify success
+                redirect('admin/category');
+            } else {
+                // Handle error
+                $data['error'] = 'Failed to create category.';
+                $this->view('admin/category', $data);
+            }
+        } else {
+            // Show the creation form
+            $this->view('admin/category_add');
+        }
+    }
 
     // Method to handle updating a category
     // public function updateCategory($id)
@@ -169,6 +172,9 @@ class AdminController extends Controller
 
     public function category_edit($id)
     {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+        
         $categoryModel = new CategoryModel();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
