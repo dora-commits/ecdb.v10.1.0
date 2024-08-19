@@ -15,6 +15,13 @@ class AdminController extends Controller
     public function index(){
         // Initialize data array
         $data = [];
+
+        $productModel = new ProductModel();
+
+        $data['count_products'] = $productModel->countAll();
+        
+        // // Fetch other necessary data and then load the view
+        // $this->view('admin/dashboard', $data);
         
         // Set the username using the middleware and display it in view section
         if(AdminAuthMiddleware::setUsername($data)){

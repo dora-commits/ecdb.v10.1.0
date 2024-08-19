@@ -429,7 +429,7 @@
                                 <?php if (!empty($products)): ?>
                                     <?php foreach ($products as $product): ?>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <th><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></th>
                                             <td><?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?php echo htmlspecialchars($product->price, ENT_QUOTES, 'UTF-8'); ?></td>
