@@ -225,7 +225,7 @@ class AdminController extends Controller
             $category = $categoryModel->where(['id'=> $id]);
 
             $name_category = $category[0]->{"name"};
-            
+
             $data['error'] = "Cannot delete category: {$name_category}. It is referenced by products.";
             // redirect('admin/category', $data);
             $this->view('admin/category', $data);
@@ -242,6 +242,15 @@ class AdminController extends Controller
             $data['error'] = 'Failed to delete category.';
             $this->view('admin/category', $data);
         }
+    }
+
+    public function product()
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+        $productModel = new ProductModel();
+        $data['products'] = $productModel->findAll();
+        $this->view('admin/product', $data);
     }
 }
 
