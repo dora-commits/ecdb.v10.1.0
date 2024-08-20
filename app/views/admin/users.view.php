@@ -453,7 +453,7 @@
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="2">No categories found.</td>
+                                        <td colspan="2">No users found.</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>

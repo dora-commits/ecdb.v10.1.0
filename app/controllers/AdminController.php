@@ -438,6 +438,37 @@ class AdminController extends Controller
             }
         }
     }
+
+    public function users_delete($id)
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+
+        $userModel = new UserModel();
+
+        // Check if the category has references
+        if ($userModel->hasReferences($id)) {
+            $users = $userModel->where(['id'=> $id]);
+
+            $email_user = $users[0]->{"email"};
+
+            $data['error'] = "Cannot delete user: {$email_user}. It is referenced by other table.";
+            
+            $this->view('admin/users', $data);
+            return;
+        }
+
+        $result = $userModel->delete($id);
+
+        if (gettype($result) != "boolean") {
+            // Redirect or notify success
+            redirect('admin/users');
+        } else {
+            // Handle error
+            $data['error'] = 'Failed to delete user.';
+            $this->view('admin/users', $data);
+        }
+    }
 }
 
 

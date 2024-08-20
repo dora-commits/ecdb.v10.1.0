@@ -16,4 +16,20 @@ class UserModel
         $num = $result[0]->{"total"};
         return $num;
     }
+
+    public function hasReferences($id)
+    {
+        // TODO: reviews
+        $query = "SELECT COUNT(*) FROM reviews WHERE pid = :id";
+        $result = $this->query($query, ['id' => $id]);
+
+        if (gettype($result) != "boolean") {
+            return $result[0]->{"COUNT(*)"} > 0;
+        }
+
+        // TODO:  wishlist, usersmeta
+        // ... 
+
+        return false;
+    }
 }
