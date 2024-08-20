@@ -260,9 +260,9 @@
 
         /* Css Sign up */
 
-        body {
+        /* body {
             background-color: #f8f9fa;
-        }
+        } */
 
         .form-signin {
             max-width: 600px;
