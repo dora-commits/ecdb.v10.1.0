@@ -221,8 +221,38 @@
     </svg>
 
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Adminstrator <br> Hi <?= $username ?> </a>
+        <!-- <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Adminstrator <br> Hi <?= $username ?> </a> -->
 
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="<?= $_ENV['ROOT'] ?>/admin/info">
+            <div class="admin-info">
+                <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/admin.png" alt="Admin Avatar" class="admin-avatar">
+                <div>
+                    <strong>Administrator</strong> <br> <i>Hi, <?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?></i>
+                </div>
+            </div>
+        </a>
+
+        <!--  -->
+        <style>
+        .admin-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .admin-avatar {
+            width: 40px; /* Adjust size as needed */
+            height: 40px; /* Adjust size as needed */
+            border-radius: 50%; /* Makes the image circular */
+            margin-right: 10px; /* Spacing between image and text */
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        </style>
+        <!--  -->
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
                 <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
@@ -412,7 +442,7 @@
                     </div>
                 </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="190"></canvas>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="250"></canvas>
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <!-- <h1 class="h2">Categories</h1> -->
