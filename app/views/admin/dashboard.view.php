@@ -255,6 +255,24 @@
         </style>
         <!--  -->
 
+        <!-- SideBar Config -->
+        <style>
+            .sidebar {
+                position: fixed; /* Fix the sidebar position */
+                top: 70px; /* Align it to the top */
+                left: 0; /* Align it to the left */
+                height: 100vh; /* Full viewport height */
+                width: 250px; /* Adjust width as needed */
+                overflow-y: auto; /* Allow scrolling within the sidebar if content overflows */
+            }
+
+            .main-content {
+                margin-left: 250px; /* Adjust margin to accommodate the sidebar width */
+                padding: 20px; /* Add padding to the main content area */
+            }
+        </style>
+        <!--  -->
+          
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
                 <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">

@@ -277,6 +277,24 @@
         </div>
     </header>
 
+    <!-- SideBar Config -->
+    <style>
+        .sidebar {
+            position: fixed; /* Fix the sidebar position */
+            top: 70px; /* Align it to the top */
+            left: 0; /* Align it to the left */
+            height: 100vh; /* Full viewport height */
+            width: 250px; /* Adjust width as needed */
+            overflow-y: auto; /* Allow scrolling within the sidebar if content overflows */
+        }
+
+        .main-content {
+            margin-left: 250px; /* Adjust margin to accommodate the sidebar width */
+            padding: 20px; /* Add padding to the main content area */
+        }
+    </style>
+    <!--  -->
+
     <div class="container-fluid">
         <div class="row">
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
