@@ -9,13 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Dashboard Template · Bootstrap v5.3</title>
+    <title>Dashboard</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
 
     <link href="<?= $_ENV['ROOT'] ?>/assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -223,7 +221,7 @@
     </svg>
 
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Adminstrator name <br> Hi <?= $username ?> </a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Adminstrator <br> Hi <?= $username ?> </a>
 
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
@@ -252,7 +250,7 @@
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
                 <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="sidebarMenuLabel">Adminstrator name</h5>
+                        <h5 class="offcanvas-title" id="sidebarMenuLabel">Adminstrator</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
@@ -386,13 +384,13 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <!-- <h1 class="h2">Dashboard</h1> -->
-                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/dashboard" style="font-weight: bold; font-size: 1.1rem; color: blue;">
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/users" style="font-weight: bold; font-size: 1.1rem; color: blue;">
                         <svg class="bi" width="24" height="24" fill="blue"> 
-                            <use xlink:href="#house-fill" />
+                            <use xlink:href="#people" />
                         </svg>
-                        Dashboard
+                        Users
                     </a>
-                    <!--  -->
+
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -407,291 +405,48 @@
                     </div>
                 </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="150"></canvas>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="235"></canvas>
 
-                <!--  -->
-                <!-- style CSS for panel info [products, category, user] -->
-                <!-- Scope for Specified CSS style -->
-                <!-- <div class="bootstrap-scope">
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-                    Panel for Products
-                    <div class="col-lg-3 col-md-6">
-                    <div class="col-lg-3 col-md-6 px-md-4"> 
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-box fa-5x"></i> Updated to a box icon for products
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo htmlspecialchars($count_products, ENT_QUOTES, 'UTF-8'); ?></div>
-                                        <div>Products</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="<?= $_ENV['ROOT'] ?>/admin/products">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Categories</h1>
                 </div> -->
-
-                <!-- <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                        <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/empty.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            
-                            <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/empty.png" class="card-img-top" alt="Product Image" style="width: 100px; height: auto; margin: 0 auto;">
-                            <div class="card-body">
-                                <h5 class="card-title">Products</h5>
-                                <p class="card-text">
-                                    This is a longer card with supporting text below as a natural lead-in to additional content. 
-                                    This content is a little bit longer.
-                                </p>
-                                <p class="card-text">
-                                    <strong>Number of Products:</strong> <?php echo htmlspecialchars($count_products, ENT_QUOTES, 'UTF-8'); ?>
-                                </p>
-                            
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/products" class="btn btn-primary">View Products</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="row row-cols-1 row-cols-md-3 g-3">
-                    <div class="col">
-                        <div class="card" style="max-width: 20rem; ">
-                            <div class="card-img-top-wrapper">
-                                <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/cover.jpg" class="card-img-top" alt="Product Image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Products</h5>
-                                <p class="card-text">
-                                    Explore our collection of books, cameras, and mobiles perfect for every need, from reading to capturing memories and staying connected
-                                </p>
-                                <p class="card-text">
-                                    <!-- <strong>Products:</strong> -->
-                                    <span style="font-size: 30px; font-weight: bold; color: #007bff;">
-                                        <?php echo htmlspecialchars($count_products, ENT_QUOTES, 'UTF-8'); ?>
-                                    </span>
-                                </p>
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/products" class="btn btn-primary">View Products</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card" style="max-width: 20rem; ">
-                            <div class="card-img-top-wrapper">
-                                <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/category.png" class="card-img-top" alt="Product Image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Categories</h5>
-                                <p class="card-text">
-                                    Explore our collection of books, cameras, and mobiles perfect for every need, from reading to capturing memories and staying connected
-                                </p>
-                                <p class="card-text">
-                                    <!-- <kbd><strong>Categories:</strong></kbd> -->
-                                    <span style="font-size: 30px; font-weight: bold; color: #007bff;">
-                                        <?php echo htmlspecialchars($count_category, ENT_QUOTES, 'UTF-8'); ?>
-                                    </span>
-                                </p>
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/category" class="btn btn-primary">View Categories</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card" style="max-width: 20rem; ">
-                            <div class="card-img-top-wrapper">
-                                <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/user.png" class="card-img-top" alt="Product Image">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Users</h5>
-                                <p class="card-text">
-                                    Explore our collection of books, cameras, and mobiles perfect for every need, from reading to capturing memories and staying connected
-                                </p>
-                                <p class="card-text">
-                                    <!-- <strong>Users:</strong> -->
-                                    <span style="font-size: 30px; font-weight: bold; color: #007bff;">
-                                        <?php echo htmlspecialchars($count_users, ENT_QUOTES, 'UTF-8'); ?>
-                                    </span>
-                                </p>
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/users" class="btn btn-primary">View Users</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Custom CSS -->
-                <style>
-                    .card-img-top-wrapper {
-                        width: 100%;
-                        padding-top: 33.33%;
-                        /* This makes the div take up 1/3 of the card height */
-                        position: relative;
-                    }
-
-                    .card-img-top {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        /* Ensures the image covers the entire area without distorting */
-                    }
-                </style>
-
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <!-- <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a> -->
+                    <!-- <h1 class="h2">Categories</h1> -->
+                    <kbd><caption>Update User</caption></kbd>
                 </div>
 
-                <!-- <h2>Section title</h2>
-                <div class="table-responsive small">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Header</th>
-                                <th scope="col">Header</th>
-                                <th scope="col">Header</th>
-                                <th scope="col">Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>information</td>
-                                <td>placeholder</td>
-                                <td>illustrative</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,004</td>
-                                <td>text</td>
-                                <td>random</td>
-                                <td>layout</td>
-                                <td>dashboard</td>
-                            </tr>
-                            <tr>
-                                <td>1,005</td>
-                                <td>dashboard</td>
-                                <td>irrelevant</td>
-                                <td>text</td>
-                                <td>placeholder</td>
-                            </tr>
-                            <tr>
-                                <td>1,006</td>
-                                <td>dashboard</td>
-                                <td>illustrative</td>
-                                <td>rich</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,007</td>
-                                <td>placeholder</td>
-                                <td>tabular</td>
-                                <td>information</td>
-                                <td>irrelevant</td>
-                            </tr>
-                            <tr>
-                                <td>1,008</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,009</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,010</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                            <tr>
-                                <td>1,011</td>
-                                <td>information</td>
-                                <td>placeholder</td>
-                                <td>illustrative</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,012</td>
-                                <td>text</td>
-                                <td>placeholder</td>
-                                <td>layout</td>
-                                <td>dashboard</td>
-                            </tr>
-                            <tr>
-                                <td>1,013</td>
-                                <td>dashboard</td>
-                                <td>irrelevant</td>
-                                <td>text</td>
-                                <td>visual</td>
-                            </tr>
-                            <tr>
-                                <td>1,014</td>
-                                <td>dashboard</td>
-                                <td>illustrative</td>
-                                <td>rich</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,015</td>
-                                <td>random</td>
-                                <td>tabular</td>
-                                <td>information</td>
-                                <td>text</td>
-                            </tr>
-                        </tbody>
-                    </table> -->
-                <!-- </div> -->
+                <?php if (isset($data['error'])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo htmlspecialchars($data['error'], ENT_QUOTES, 'UTF-8'); ?>
+                    </div>
+                <?php endif; ?>
+                
+                <!-- <h2>Edit Category</h2> -->
+                <form action="<?= $_ENV['ROOT'] ?>/admin/users_edit/<?php echo htmlspecialchars($data['users']->id); ?>" method="post">
+                    <div class="form-group">
+                        <label for="email"><strong>Email</strong></label>
+                        <br>
+                        <input type="text" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($data['users']->email); ?>" required>
+                        <br>
+
+                        <label for="password"><strong>Password</strong></label>
+                        <br>
+                        <input type="text" name="password" id="password" class="form-control" value="<?php echo htmlspecialchars($data['users']->password); ?>" required>
+                        <br>
+                        <!-- Timestamp :)))) -->
+                        <label for="timestamp"><strong>Timestamp</strong></label>
+                        <br>
+                        <!-- TODO: Make Invalid Timestamp by change type type="datetime-local" to type="text" and write sth wrong time-->
+                        <input type="datetime-local" name="timestamp" id="timestamp" class="form-control" value="<?php echo htmlspecialchars(date('Y-m-d\TH:i', strtotime($data['users']->timestamp))); ?>" required>
+                        <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                <!-- <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a> -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <a href="<?= $_ENV['ROOT'] ?>/admin/users">Back to List</a>
+                </div>
+
             </main>
         </div>
     </div>

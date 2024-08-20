@@ -379,6 +379,65 @@ class AdminController extends Controller
         $data['users'] = $userModel->findAll();
         $this->view('admin/users', $data);
     }
+
+    public function users_edit($id)
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+
+        $userModel = new UserModel();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validate and sanitize the input data
+            
+            // $timestamp = $_POST['timestamp'];
+            // $formattedTimestamp = date('Y-m-d H:i:s', strtotime($timestamp));
+
+            $timestamp = $_POST['timestamp'];
+
+            // Check if the timestamp is valid
+            if (strtotime($timestamp) !== false) {
+                $formattedTimestamp = date('Y-m-d H:i:s', strtotime($timestamp));
+            } else {
+                $data['error'] = 'Invalid timestamp.';
+                $data['users'] = $userModel->first(['id' => $id]);
+                $this->view('admin/users_edit', $data);
+                return;
+            }
+
+            $data = [
+                'email' => $_POST['email'],
+                'password' => md5($_POST['password']),
+                'timestamp' => $formattedTimestamp,
+            ];
+
+            // Update the user
+            $result = $userModel->update($id, $data);
+
+            if (gettype($result) != "boolean") {
+                // Redirect to the user list after a successful update
+                redirect('admin/users');
+            } else {
+                // TODO: No checked feature
+                // If update fails, display the error
+                $data['error'] = 'Failed to update user.';
+                $data['users'] = $userModel->first(['id' => $id]);
+                $this->view('admin/users_edit', $data);
+            }
+        } else {
+            // TODO: No checked feature
+            // Handle GET request to fetch the existing user data
+            $data['users'] = $userModel->first(['id' => $id]);
+            
+            if (!$data['users']) {
+                // Handle case where user is not found
+                $data['error'] = 'User not found.';
+                $this->view('admin/users', $data);
+            } else {
+                $this->view('admin/users_edit', $data);
+            }
+        }
+    }
 }
 
 

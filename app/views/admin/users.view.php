@@ -447,8 +447,8 @@
                                             <td style="text-align: center;"><?php echo htmlspecialchars($user->email, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td ><?php echo htmlspecialchars($user->password, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td style="text-align: center;"><?php echo htmlspecialchars($user->timestamp, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($user->id); ?>">Edit</a> </td>
-                                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/<?php echo htmlspecialchars($user->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/users_edit/<?php echo htmlspecialchars($user->id); ?>">Edit</a> </td>
+                                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/users_delete/<?php echo htmlspecialchars($user->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
