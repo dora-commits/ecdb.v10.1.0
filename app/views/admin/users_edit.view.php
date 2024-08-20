@@ -292,7 +292,7 @@
         }
     </style>
     <!--  -->
-      
+
     <div class="container-fluid">
         <div class="row">
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
@@ -453,7 +453,7 @@
                     </div>
                 </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="235"></canvas>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="215"></canvas>
 
                 <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Categories</h1>
