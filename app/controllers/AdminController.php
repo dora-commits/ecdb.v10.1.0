@@ -477,6 +477,48 @@ class AdminController extends Controller
 
         $this->view('admin/info', $data);
     }
+
+    public function orders()
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+        $orderModel = new OrderModel();
+        $data['orders'] = $orderModel->findAll();
+        $this->view('admin/orders', $data);
+    }
+
+    public function orders_delete($id)
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+
+        $orderModel = new OrderModel();
+
+        // Check if the order has references
+        if ($orderModel->hasReferences($id)) {
+            $orders = $orderModel->where(['id'=> $id]);
+
+            $id_order = $orders[0]->{"id"};
+            $uid_order = $orders[0]->{"uid"};
+            $time_order = $orders[0]->{"timestamp"} ?? 'Default Value';
+
+            $data['error'] = "Cannot delete order [{$id_order}] created at [{$time_order}] by uid [{$uid_order}]. It is referenced by ordertracking.";
+
+            $this->view('admin/orders', $data);
+            return;
+        }
+
+        $result = $orderModel->delete($id);
+
+        if (gettype($result) != "boolean") {
+            // Redirect or notify success
+            redirect('admin/orders');
+        } else {
+            // Handle error
+            $data['error'] = 'Failed to delete order.';
+            $this->view('admin/orders', $data);
+        }
+    }
 }
 
 
