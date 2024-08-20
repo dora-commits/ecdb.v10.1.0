@@ -6,13 +6,10 @@
 class ApiController
 {
     public function index(){
-        $order = new OrderModel();
-        $result = $order->for_api();
         header('Content-Type: application/json');
-        echo json_encode($result);
-
-        // $this->view('home');
+        echo json_encode([]);
     }
+    
     public function orders($id = null){
         $order = new OrderModel();
         if (is_null($id)) {
