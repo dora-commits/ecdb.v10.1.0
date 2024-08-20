@@ -40,13 +40,13 @@
                         <tr>
                             <th style="text-align: center;"><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></th>
                             <td><?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td style="text-align: center;"><strong><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></strong></td>
                             <td style="text-align: center;"><?php echo htmlspecialchars('$' . number_format($product->price, 2, '.', ','), ENT_QUOTES, 'UTF-8'); ?></td>
                             <!-- <td style="text-align: center;"><img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>"></td> -->
                             <td style="text-align: center;">
                                 <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>" class="thumb">
                             </td>
-                            <td><?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><i><?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?></i></td>
                             <td style="text-align: center;">
                                 <a href="<?= $_ENV['ROOT'] ?>/admin/products_edit/<?php echo htmlspecialchars($product->id); ?>" class="text-blue">
                                     <i class="bi bi-pencil-square"></i>
