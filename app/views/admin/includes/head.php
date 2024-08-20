@@ -326,6 +326,16 @@
             object-fit: cover;
             /* Optional: ensures image covers the area */
         }
+
+        /* Icon Back to list */
+        .align-bottom {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .icon-size {
+            font-size: 1.25rem;
+        }
     </style>
 
     <!-- Custom styles for this template -->

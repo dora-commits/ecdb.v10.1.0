@@ -44,7 +44,7 @@
                     reader.onload = function(e) {
                         var img = document.getElementById('current-thumb');
                         img.src = e.target.result;
-                        img.style.maxWidth = '200px'; 
+                        img.style.maxWidth = '200px';
                         img.style.height = 'auto';
                     };
 
@@ -64,6 +64,12 @@
     </form>
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <a href="<?= $_ENV['ROOT'] ?>/admin/products">Back to List</a>
+        <p class="text-center mb-0">
+            <a class="text-blue d-flex align-items-center align-bottom" href="<?= $_ENV['ROOT'] ?>/admin/products">
+                <i class="bi bi-arrow-left-circle me-2 icon-size"> </i>
+                Back to List
+            </a>
+        </p>
     </div>
+
 </main>
