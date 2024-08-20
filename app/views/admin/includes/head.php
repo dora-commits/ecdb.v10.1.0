@@ -268,9 +268,9 @@
             max-width: 600px;
             margin: auto;
             padding: 2rem;
-            background: #ffffff;
+            /* background: #ffffff; */
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .form-signin .form-floating>input {
