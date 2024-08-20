@@ -23,8 +23,47 @@
         </div>
     </div>
     <!--  -->
-    <canvas class="my-4 w-100" id="myChart" width="900" height="250"></canvas>
+    <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="250"></canvas> -->
+    <canvas class="my-4 w-100" id="ordersChart" width="900" height="215"></canvas>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            fetch("<?= $_ENV['ROOT'] ?>/api/orders")
+                .then(response => response.json())
+                .then(data => {
+
+                    const labels = data.map(order => new Date(order.timestamp).toLocaleString());
+                    const prices = data.map(order => order.totalprice);
+
+                    // console.log(prices);
+
+                    const ctx = document.getElementById('ordersChart').getContext('2d');
+
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Total Price of Orders Tracking',
+                                data: prices,
+                                // borderColor: 'rgb(75, 192, 192)',
+                                borderColor: '#0014b1',
+                                backgroundColor: 'rgba(75, 192, 192, 1)',
+                                // backgroundColor: '#9BD0F5',
+                                borderWidth: 4, // Make the line thicker
+                                pointBackgroundColor: '#FFC300', // Color of the points on the line
+                                pointBorderColor: '#0014b1', // Border color of the points
+                                pointRadius: 5, // Size of the points
+                                pointBorderWidth: 2, // Border width of the points
+                            }]
+                        },
+                        options: {}
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
     <!-- Display the error message if it exists -->
     <?php if (!empty($data['error'])): ?>
         <div class="alert alert-danger">
@@ -34,7 +73,7 @@
 
     <div class="table-responsive small">
         <table class="table table-striped table-sm table-hover table-bordered caption-top">
-            <!-- <caption>List of Products</caption> -->
+            <caption>List of Orders</caption>
             <thead class="table-dark">
                 <tr>
                     <th scope="col" style="text-align: center; width: 110px;">No.</th>

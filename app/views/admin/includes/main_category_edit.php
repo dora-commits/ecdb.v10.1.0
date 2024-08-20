@@ -23,8 +23,78 @@
         </div>
     </div>
 
-    <canvas class="my-4 w-100" id="myChart" width="900" height="250"></canvas>
+    <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="250"></canvas> -->
+    <!-- Chart -->
+    <canvas class="my-4 w-100" id="category_product_chart" width="900" height="250"></canvas>
 
+    <script>
+        async function fetchData() {
+            try {
+                const [response1, response2] = await Promise.all([
+                    fetch("<?= $_ENV['ROOT'] ?>/api/products"),
+                    fetch("<?= $_ENV['ROOT'] ?>/api/category")
+                ]);
+
+                const products = await response1.json();
+                const categories = await response2.json();
+
+                const productCounts = {};
+
+                categories.forEach(category => {
+                    productCounts[category.name] = 0;
+                });
+
+                products.forEach(product => {
+                    const category = categories.find(cat => cat.id === product.catid);
+                    if (category) {
+                        productCounts[category.name]++;
+                    }
+                });
+
+                const labels = [];
+                const values = [];
+
+                for (const [key, value] of Object.entries(productCounts)) {
+                    labels.push(key);
+                    values.push(value);
+                }
+
+                const ctx = document.getElementById('category_product_chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total Products per Category',
+                            data: values,
+                            // borderColor: '#0014b1',
+                            borderColor: 'rgb(54, 162, 235)',
+                            // backgroundColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderWidth: 4,
+                            pointBackgroundColor: '#FFC300',
+                            pointBorderColor: '#0014b1',
+                            pointRadius: 5,
+                            pointBorderWidth: 2,
+                            barThickness: 100,
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchData();
+    </script>
+    <!--  -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <kbd>
             <caption>Update Category</caption>

@@ -29,7 +29,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            fetch("<?= $_ENV['ROOT'] ?>/api/orders_chart")
+            fetch("<?= $_ENV['ROOT'] ?>/api/orders")
                 .then(response => response.json())
                 .then(data => {
 

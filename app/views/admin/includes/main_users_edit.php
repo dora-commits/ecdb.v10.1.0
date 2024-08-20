@@ -24,7 +24,81 @@
         </div>
     </div>
 
-    <canvas class="my-4 w-100" id="myChart" width="900" height="215"></canvas>
+    <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="215"></canvas> -->
+
+    <canvas class="my-4 w-100" id="user_order_chart" width="900" height="250"></canvas>
+
+    <script>
+        async function fetchData() {
+            try {
+                const [response] = await Promise.all([
+                    fetch("<?= $_ENV['ROOT'] ?>/api/orders")
+                ]);
+
+                const orders = await response.json();
+
+                // Initialize the object to store total price per user
+                const totalPrices = {};
+
+                // Aggregate the total price for each user (uid)
+                orders.forEach(order => {
+                    const userId = order.uid;
+                    const totalPrice = parseFloat(order.totalprice);
+
+                    if (!totalPrices[userId]) {
+                        totalPrices[userId] = 0;
+                    }
+
+                    totalPrices[userId] += totalPrice;
+                });
+
+                // Prepare the labels and values arrays
+                const labels = [];
+                const values = [];
+
+                // Map the total prices object to labels and values arrays
+                Object.keys(totalPrices).forEach(userId => {
+                    labels.push(userId);
+                    values.push(totalPrices[userId]);
+                });
+
+                console.log(labels);
+
+                const ctx = document.getElementById('user_order_chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Total Price per UserID ($)",
+                            data: values,
+                            // borderColor: '#0014b1',
+                            borderColor: 'rgb(255, 159, 64)',
+                            // backgroundColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderWidth: 4,
+                            pointBackgroundColor: '#FFC300',
+                            pointBorderColor: '#0014b1',
+                            pointRadius: 5,
+                            pointBorderWidth: 2,
+                            barThickness: 100,
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchData();
+    </script>
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <!-- <h1 class="h2">Categories</h1> -->
