@@ -26,7 +26,7 @@
 
     <canvas class="my-4 w-100" id="myChart" width="900" height="151"></canvas>
 
-    <div class="row row-cols-1 row-cols-md-3 g-3">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col">
             <div class="card" style="max-width: 20rem; ">
                 <div class="card-img-top-wrapper">
@@ -86,6 +86,27 @@
                         </span>
                     </p>
                     <a href="<?= $_ENV['ROOT'] ?>/admin/users" class="btn btn-primary">View Users</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card" style="max-width: 20rem; ">
+                <div class="card-img-top-wrapper">
+                    <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/order.png" class="card-img-top" alt="Product Image">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Orders</h5>
+                    <p class="card-text">
+                        Explore our collection of books, cameras, and mobiles perfect for every need, from reading to capturing memories and staying connected
+                    </p>
+                    <p class="card-text">
+                        <!-- <strong>Users:</strong> -->
+                        <span style="font-size: 30px; font-weight: bold; color: #007bff;">
+                            <?php echo htmlspecialchars($count_orders, ENT_QUOTES, 'UTF-8'); ?>
+                        </span>
+                    </p>
+                    <a href="<?= $_ENV['ROOT'] ?>/admin/orders" class="btn btn-primary">View Orders</a>
                 </div>
             </div>
         </div>

@@ -19,10 +19,12 @@ class AdminController extends Controller
         $productModel = new ProductModel();
         $categoryModel = new CategoryModel();
         $userModel = new UserModel();
+        $orderModel = new OrderModel();
 
         $data['count_products'] = $productModel->countAll();
         $data['count_category'] = $categoryModel->countAll();
         $data['count_users'] = $userModel->countAll();
+        $data['count_orders'] = $orderModel->countAll();
 
         
         // // Fetch other necessary data and then load the view
