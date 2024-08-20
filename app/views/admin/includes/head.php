@@ -297,6 +297,35 @@
         .text-blue:hover {
             text-decoration: underline;
         }
+
+        /* Table, icon */
+        .table-responsive {
+            margin: 1rem;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .table a:hover {
+            text-decoration: underline;
+        }
+
+        /* Thumb image */
+        .table img.thumb {
+            width: 80px;
+            /* Adjust the width as needed */
+            height: auto;
+            /* Maintain aspect ratio */
+            object-fit: cover;
+            /* Optional: ensures image covers the area */
+        }
     </style>
 
     <!-- Custom styles for this template -->

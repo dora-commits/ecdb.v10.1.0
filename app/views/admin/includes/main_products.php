@@ -24,14 +24,14 @@
             <!-- <caption>List of Products</caption> -->
             <thead class="table-dark">
                 <tr>
-                    <th scope="col" style="text-align: center; width: 100px;">No.</th>
+                    <th scope="col" style="text-align: center; width: 110px;">No.</th>
                     <th scope="col" style="text-align: center;">Name</th>
-                    <th scope="col" style="text-align: center; width: 100px;">Type</th>
-                    <th scope="col" style="text-align: center; width: 100px;">Price</th>
+                    <th scope="col" style="text-align: center; width: 110px;">Type</th>
+                    <th scope="col" style="text-align: center; width: 110px;">Price</th>
                     <th scope="col" style="text-align: center;">Thumb</th>
                     <th scope="col" style="text-align: center;">Description</th>
-                    <th scope="col" style="text-align: center;  width: 100px;">Edit</th>
-                    <th scope="col" style="text-align: center;  width: 100px;">Delete</th>
+                    <th scope="col" style="text-align: center; width: 110px;">Edit</th>
+                    <th scope="col" style="text-align: center; width: 110px;">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,15 +42,26 @@
                             <td><?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td style="text-align: center;"><?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td style="text-align: center;"><?php echo htmlspecialchars('$' . number_format($product->price, 2, '.', ','), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>" width="100"></td>
+                            <!-- <td style="text-align: center;"><img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>"></td> -->
+                            <td style="text-align: center;">
+                                <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/<?= $product->thumb; ?>" alt="<?= $product->thumb; ?>" class="thumb">
+                            </td>
                             <td><?php echo htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><a href="<?= $_ENV['ROOT'] ?>/admin/products_edit/<?php echo htmlspecialchars($product->id); ?>">Edit</a> </td>
-                            <td style="text-align: center;"><a href="<?= $_ENV['ROOT'] ?>/admin/products_delete/<?php echo htmlspecialchars($product->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                            <td style="text-align: center;">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/products_edit/<?php echo htmlspecialchars($product->id); ?>" class="text-blue">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/products_delete/<?php echo htmlspecialchars($product->id); ?>" onclick="return confirm('Are you sure?');" class="text-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="2">No products found.</td>
+                        <td colspan="8" style="text-align: center;">No products found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

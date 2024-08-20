@@ -33,11 +33,10 @@
         </div>
     <?php endif; ?>
 
-    <div class="table-responsive small">
+    <!-- <div class="table-responsive small">
         <table class="table table-striped table-sm table-hover table-bordered caption-top">
             <caption>List of Categories</caption>
             <thead class="table-dark">
-                <!-- <thead class="table-light"> -->
                 <tr>
                     <th scope="col" style="text-align: center;">No.</th>
                     <th scope="col" style="text-align: center;">Name</th>
@@ -58,6 +57,44 @@
                 <?php else: ?>
                     <tr>
                         <td colspan="2">No categories found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div> -->
+
+    <div class="table-responsive small">
+        <table class="table table-striped table-sm table-hover table-bordered caption-top">
+            <caption>List of Categories</caption>
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" style="text-align: center; width: 200px;">No.</th>
+                    <th scope="col" style="text-align: center;">Name</th>
+                    <th scope="col" style="text-align: center; width: 200px;">Edit</th>
+                    <th scope="col" style="text-align: center; width: 200px;">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($categories)): ?>
+                    <?php foreach ($categories as $category): ?>
+                        <tr>
+                            <td style="text-align: center;"><?php echo htmlspecialchars($category->id, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td style="text-align: center;"><?php echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td style="text-align: center;">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($category->id); ?>" class="text-blue">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/<?php echo htmlspecialchars($category->id); ?>" onclick="return confirm('Are you sure?');" class="text-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No categories found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

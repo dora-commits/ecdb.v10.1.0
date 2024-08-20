@@ -41,14 +41,13 @@
         <table class="table table-striped table-sm table-hover table-bordered caption-top">
             <caption>List of Users</caption>
             <thead class="table-dark">
-                <!-- <thead class="table-light"> -->
                 <tr>
                     <th scope="col" style="text-align: center;">No.</th>
                     <th scope="col" style="text-align: center;">Email</th>
                     <th scope="col" style="text-align: center;">Password</th>
                     <th scope="col" style="text-align: center;">Timestamp</th>
-                    <th scope="col" style="text-align: center;">Edit</th>
-                    <th scope="col" style="text-align: center;">Delete</th>
+                    <th scope="col" style="text-align: center; width: 150px;">Edit</th>
+                    <th scope="col" style="text-align: center; width: 150px;">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,13 +58,21 @@
                             <td style="text-align: center;"><?php echo htmlspecialchars($user->email, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td style="text-align: center;"><?php echo htmlspecialchars($user->password, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td style="text-align: center;"><?php echo htmlspecialchars($user->timestamp, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/users_edit/<?php echo htmlspecialchars($user->id); ?>">Edit</a> </td>
-                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/users_delete/<?php echo htmlspecialchars($user->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                            <td style="text-align: center;">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/users_edit/<?php echo htmlspecialchars($user->id); ?>" class="text-primary">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/users_delete/<?php echo htmlspecialchars($user->id); ?>" onclick="return confirm('Are you sure?');" class="text-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="2">No users found.</td>
+                        <td colspan="6" class="text-center">No users found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
