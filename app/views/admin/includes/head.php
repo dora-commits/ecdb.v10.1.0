@@ -319,7 +319,7 @@
 
         /* Thumb image */
         .table img.thumb {
-            width: 80px;
+            width: 100px;
             /* Adjust the width as needed */
             height: auto;
             /* Maintain aspect ratio */
