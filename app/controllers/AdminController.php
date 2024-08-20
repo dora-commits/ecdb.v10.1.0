@@ -370,6 +370,15 @@ class AdminController extends Controller
             $this->view('admin/products', $data);
         }
     }
+
+    public function users()
+    {
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+        $userModel = new UserModel();
+        $data['users'] = $userModel->findAll();
+        $this->view('admin/users', $data);
+    }
 }
 
 

@@ -288,7 +288,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/users">
+                                <a class="nav-link d-flex align-items-center gap-2" href="#">
                                     <svg class="bi">
                                         <use xlink:href="#people" />
                                     </svg>
@@ -384,12 +384,19 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <!-- <h1 class="h2">Dashboard</h1> -->
-                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
-                        <svg class="bi" width="24" height="24" fill="blue"> 
+                    <!-- <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category">
+                        <svg class="bi">
                             <use xlink:href="#cart" />
                         </svg>
                         Category
+                    </a> -->
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
+                        <svg class="bi" width="24" height="24" fill="blue"> 
+                            <use xlink:href="#people" />
+                        </svg>
+                        Customers
                     </a>
+
                     <!--  -->
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
@@ -405,26 +412,59 @@
                     </div>
                 </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="235"></canvas>
+                <canvas class="my-4 w-100" id="myChart" width="900" height="190"></canvas>
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <!-- <h1 class="h2">Categories</h1> -->
-                    <kbd><caption>Add New Categories</caption></kbd>
+                </div>
+                <!-- <h2>Categories</h2> -->
+                <!-- Display the error message if it exists -->
+                <?php if (!empty($data['error'])): ?>
+                    <div class="alert alert-danger">
+                        <?= htmlspecialchars($data['error']); ?>
+                    </div>
+                <?php endif; ?>
+
+                    <div class="table-responsive small">
+                        <table class="table table-striped table-sm table-hover table-bordered caption-top">
+                            <caption>List of Users</caption>
+                            <thead class="table-dark"> 
+                            <!-- <thead class="table-light"> -->
+                                <tr>
+                                    <th scope="col" style="text-align: center;">No.</th>
+                                    <th scope="col" style="text-align: center;">Email</th>
+                                    <th scope="col" style="text-align: center;">Password</th>
+                                    <th scope="col" style="text-align: center;">Timestamp</th>
+                                    <th scope="col" style="text-align: center;">Edit</th>
+                                    <th scope="col" style="text-align: center;">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($users)): ?>
+                                    <?php foreach ($users as $user): ?>
+                                        <tr>
+                                            <td style="text-align: center;"><?php echo htmlspecialchars($user->id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td style="text-align: center;"><?php echo htmlspecialchars($user->email, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td ><?php echo htmlspecialchars($user->password, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td style="text-align: center;"><?php echo htmlspecialchars($user->timestamp, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($user->id); ?>">Edit</a> </td>
+                                            <td style="text-align: center; width: 100px;"><a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/<?php echo htmlspecialchars($user->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="2">No categories found.</td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <a href="<?= $_ENV['ROOT'] ?>/admin/category_add" class="btn btn-primary">Add new category</a>
+                    </div> -->
+                    <!-- <a href="<?= $_ENV['ROOT'] ?>/admin/category_add" class="btn btn-primary">Add new category</a> -->
                 </div>
                 
-                <!-- <h2>Add Category</h2> -->
-                <form action="<?= $_ENV['ROOT'] ?>/admin/category_add" method="post">
-                    <div class="form-group">
-                        <label for="name"><strong>Name</strong></label><br>
-                        <input type="text" name="name" id="name" class="form-control" required>
-                        <br>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
-                <!-- <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a> -->
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a>
-                </div>
             </main>
         </div>
     </div>
