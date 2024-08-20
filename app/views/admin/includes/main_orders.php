@@ -11,8 +11,8 @@
         </a>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                <button type="button" id="shareBtn" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" id="exportBtn" class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
                 <svg class="bi">
@@ -59,6 +59,17 @@
                             }]
                         },
                         options: {}
+                    });
+                    // Export button functionality
+                    document.getElementById('exportBtn').addEventListener('click', function() {
+                        const wb = XLSX.utils.book_new();
+                        const wsData = [
+                            ['Date', 'Total Price'], // Header row
+                            ...data.map(order => [new Date(order.timestamp).toLocaleString(), order.totalprice])
+                        ];
+                        const ws = XLSX.utils.aoa_to_sheet(wsData);
+                        XLSX.utils.book_append_sheet(wb, ws, 'Orders Data');
+                        XLSX.writeFile(wb, 'OrdersData.xlsx');
                     });
                 })
                 .catch(error => console.error('Error fetching data:', error));

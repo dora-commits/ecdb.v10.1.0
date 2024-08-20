@@ -9,8 +9,8 @@
 
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                <button type="button" id="shareBtn" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" id="exportBtn" class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
                 <svg class="bi">
@@ -67,9 +67,9 @@
                             label: 'Total Products per Category',
                             data: values,
                             // borderColor: '#0014b1',
-                            borderColor:'rgb(54, 162, 235)',
+                            borderColor: 'rgb(54, 162, 235)',
                             // backgroundColor: 'rgba(75, 192, 192, 1)',
-                            backgroundColor:'rgba(54, 162, 235, 0.2)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderWidth: 4,
                             pointBackgroundColor: '#FFC300',
                             pointBorderColor: '#0014b1',
@@ -85,6 +85,17 @@
                             }
                         }
                     }
+                });
+                // Export button functionality
+                document.getElementById('exportBtn').addEventListener('click', function() {
+                    const wb = XLSX.utils.book_new();
+                    const wsData = [
+                        ['Category', 'Number of Products'], // Header row
+                        ...labels.map((label, index) => [label, values[index]])
+                    ];
+                    const ws = XLSX.utils.aoa_to_sheet(wsData);
+                    XLSX.utils.book_append_sheet(wb, ws, 'Product Categories');
+                    XLSX.writeFile(wb, 'ProductCategories.xlsx');
                 });
             } catch (error) {
                 console.error('Error fetching data:', error);
