@@ -453,7 +453,7 @@ class AdminController extends Controller
             $email_user = $users[0]->{"email"};
 
             $data['error'] = "Cannot delete user: {$email_user}. It is referenced by other table.";
-            
+
             $this->view('admin/users', $data);
             return;
         }
@@ -468,6 +468,14 @@ class AdminController extends Controller
             $data['error'] = 'Failed to delete user.';
             $this->view('admin/users', $data);
         }
+    }
+
+    public function info(){
+        // Initialize data array
+        $data = [];
+        AdminAuthMiddleware::setUsername($data);
+
+        $this->view('admin/info', $data);
     }
 }
 
