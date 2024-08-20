@@ -20,6 +20,9 @@
 
             <!-- Main -->
             <?php require_once (__DIR__."/includes/main_products.php");?>
+            
+            <!-- Footer -->
+            <?php require_once (__DIR__."/includes/footer.php");?>
         </div>
     </div>
     

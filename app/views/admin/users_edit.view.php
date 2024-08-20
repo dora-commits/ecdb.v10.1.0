@@ -20,6 +20,9 @@
 
             <!-- Main -->
             <?php require_once (__DIR__."/includes/main_users_edit.php");?>
+
+            <!-- Footer -->
+            <?php require_once (__DIR__."/includes/footer.php");?>
         </div>
     </div>
     
