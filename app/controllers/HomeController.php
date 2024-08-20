@@ -26,6 +26,10 @@ class HomeController extends Controller
 
         // $d->delete(1);
 
+        $result = $d->findAll();
+        header('Content-Type: application/json');
+        echo json_encode($result);
+
         $this->view('home');
     }
 }

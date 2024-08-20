@@ -29,4 +29,11 @@ class OrderModel
 
         return false;
     }
+
+    public function for_api()
+    {
+        $query = "SELECT timestamp, totalprice FROM $this->table";
+        $result = $this->query($query);
+        return $result;
+    }
 }
