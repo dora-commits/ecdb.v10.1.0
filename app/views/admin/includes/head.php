@@ -336,6 +336,33 @@
         .icon-size {
             font-size: 1.25rem;
         }
+
+        /* Footer Css */
+        .footer {
+            /* background-color: #f8f9fa; */
+            /* Light grey background */
+            /* top: 50px; */
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            /* Light grey border */
+            text-align: center;
+        }
+
+        .footer .container {
+            max-width: 100%;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+        /* Ensure footer responsiveness */
+        @media (max-width: 768px) {
+            .footer {
+                text-align: center;
+                padding: 15px;
+            }
+        }
     </style>
 
     <!-- Custom styles for this template -->
