@@ -363,6 +363,68 @@
                 padding: 15px;
             }
         }
+
+        .sidebar {
+            background-color: #000;
+            /* Black background */
+        }
+
+        .sidebar ul.nav li.nav-item a.nav-link {
+            color: #007bff;
+            /* Blue link color initially */
+            transition: background-color 0.3s, color 0.3s;
+            /* Smooth transition */
+        }
+
+        .sidebar ul.nav li.nav-item a.nav-link:hover {
+            background-color: #ffa500;
+            /* Orange background on hover */
+            color: #000;
+            /* Black text color on hover */
+        }
+
+        .sidebar ul.nav li.nav-item a.nav-link svg.bi {
+            fill: #007bff;
+            /* Blue icon color initially */
+            transition: fill 0.3s;
+            /* Smooth transition */
+        }
+
+        .sidebar ul.nav li.nav-item a.nav-link:hover svg.bi {
+            fill: #000;
+            /* Black icon color on hover */
+        }
+
+        .sidebar .sidebar-heading {
+            color: #007bff;
+            /* Blue heading text initially */
+        }
+
+        .sidebar .sidebar-heading:hover {
+            color: #000;
+            /* Black heading text on hover */
+        }
+
+        /* .sidebar .admin-info strong,
+        .sidebar .admin-info i {
+            color: #007bff;
+        } */
+
+        .sidebar .admin-info:hover strong,
+        .sidebar .admin-info:hover i {
+            color: #ffc107;
+            /* Black text for admin info on hover */
+        }
+
+        .sidebar hr {
+            border-color: #007bff;
+            /* Blue divider initially */
+        }
+
+        .sidebar hr:hover {
+            border-color: #000;
+            /* Black divider on hover */
+        }
     </style>
 
     <!-- Custom styles for this template -->
