@@ -15,10 +15,10 @@ class Route
         $url = $this->parseUrl();
 
         // // Set a custom exception handler
-        set_exception_handler(function ($exception) {
-            echo ' Fatal error: Uncaught Exception: ' . htmlspecialchars($exception->getMessage());
-            error_log($exception->getMessage() . "\n" . $exception->getTraceAsString());
-        });
+        // set_exception_handler(function ($exception) {
+        //     echo ' Fatal error: Uncaught Exception: ' . htmlspecialchars($exception->getMessage());
+        //     error_log($exception->getMessage() . "\n" . $exception->getTraceAsString());
+        // });
 
         if (!is_null($url)) {
             if (file_exists('../app/controllers/' . ucfirst($url[0]) . 'Controller.php')) {

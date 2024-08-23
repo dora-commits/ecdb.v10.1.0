@@ -55,7 +55,7 @@ class AdminController extends Controller
             // Attempt to find the admin by email
             $row = $admin->first(['email' => $email]);
 
-            if ($row && $row->password === $_POST['password']) {
+            if ($row && $row->password === md5($_POST['password'])) {
                 // Set the session and redirect if credentials are correct
                 $_SESSION['ADMIN'] = $row;
                 redirect('admin/dashboard');
@@ -85,7 +85,14 @@ class AdminController extends Controller
             $admin =  new AdminModel;
             if ($admin->validateSignup($_POST))
             {
-                $admin->insert($_POST);
+                $data = [
+                    'firstname' => $_POST['firstname'],
+                    'lastname' => $_POST['lastname'],
+                    'email' => $_POST['email'],
+                    'password' => md5($_POST['password'])
+                ];
+                
+                $admin->insert($data);
                 redirect('admin/dashboard');
             }
     

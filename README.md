@@ -1,4 +1,13 @@
-# Project 04:48:09
+# ESHOP
+
+![Admin Interface](/public/assets/previews/admin/dashboard.png)
+
+## Table of Contents
+
+- [Description](#description)
+- [Key Features](#key-features)
+- [Technologies](#technologies)
+- [Note](#note)
 
 ## Description
 Developed a sophisticated e-commerce platform combining PHP for backend operations and ReactJS for the frontend, structured according to the MVC (Model-View-Controller) architecture. The system includes a responsive admin interface, user authentication, comprehensive product and category management, dynamic reporting APIs, and robust security features.
@@ -22,8 +31,7 @@ Developed a sophisticated e-commerce platform combining PHP for backend operatio
 - **Database**: MySQL
 - **Architecture**: MVC (Model-View-Controller)
 
-## Installation and Setup
-1. **Clone the Repository**:
-   ```bash
-   git clone <>
-   cd ecommerce-platform
+## Note
+ - Check your **ROOT** carefully in .env
+ - Admin Dashboard : **ROOT**/admin
+

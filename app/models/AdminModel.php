@@ -32,12 +32,17 @@ class AdminModel
         } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $data['lastname'])) {
             $this->errors['lastname'] = "Lastname can only contain letters and spaces";
         }
+        
+        $admin = new AdminModel();
+        $data_check['email'] = $data['email'];;
 
         // Validate email
         if (empty($data['email'])) {
             $this->errors['email'] = "Email is required";
         } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['email'] = "Email is not valid";
+        } elseif ($admin->where($data_check)) {
+            $this->errors['email'] = "Email already exists";
         }
 
         // Validate password
