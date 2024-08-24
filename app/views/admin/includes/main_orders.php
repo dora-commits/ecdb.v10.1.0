@@ -1,8 +1,8 @@
 <!-- Main -->
 
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
+<main class="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
         <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/orders" style="font-weight: bold; font-size: 1.1rem; color: blue;">
             <svg class="bi" width="24" height="24" fill="blue">
                 <use xlink:href="#file-earmark" />
@@ -23,7 +23,6 @@
         </div>
     </div>
     <!--  -->
-    <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="250"></canvas> -->
     <canvas class="my-4 w-100" id="ordersChart" width="900" height="215"></canvas>
 
     <script>
