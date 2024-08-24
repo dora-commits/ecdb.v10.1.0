@@ -11,22 +11,17 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    /* background-color: #004085; */
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    /* Change this to your desired background color */
-    color: #ffffff;
-    /* Change this to your desired text color */
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+    color: #ffffff; /* White text color for both themes */
     border-radius: 5px;
-    /* Optional: for rounded corners */
     margin-bottom: 10px;
-    /* Adds space below the admin info */
     transition: background 0.3s ease, transform 0.3s ease;
     border: none;
 }
 
 .admin-info:hover {
-    background: linear-gradient(45deg, #0056b3, #003a82);
-    /* transform: scale(1.05); */
+    background: linear-gradient(45deg, #ff7e00, #ff4500);
+    transform: scale(1.05);
 }
 
 .admin-info strong {
@@ -34,19 +29,23 @@
     /* Adjust the font size of the Administrator text */
     color: #ffc107;
     /* Change the color of the "Administrator" text */
+    color: #a0a4b8;
 }
 
 .admin-info i {
     font-style: normal;
     /* Change the font style of the greeting text */
-    color: #ffffff;
+    /* color: #ffffff; */
     /* Change the color of the greeting text */
+    color: #ffc107;
+    color: #a0a4b8;
 }
 
 .sidebar .admin-info:hover strong,
 .sidebar .admin-info:hover i {
     color: #ffc107;
     /* Black text for admin info on hover */
+    color:#ffffff;
 }
 
 .sidebar .admin-info {

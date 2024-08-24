@@ -2,21 +2,18 @@
 
 <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
     <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-        <!-- <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="sidebarMenuLabel">Adminstrator name</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
-        </div> -->
+        <!-- TODO -->
+        <a class="text-white" href="<?= $_ENV['ROOT'] ?>/admin/info">
+            <div class="admin-info">
+                <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/admin.png" alt="Admin Avatar" class="admin-avatar">
+                <div>
+                    <strong>Administrator</strong> <br> <i><?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?></i>
+                </div>
+            </div>
+        </a>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
-                <!-- <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="<?= $_ENV['ROOT'] ?>/admin/info"> -->
-                <a class="text-white" href="<?= $_ENV['ROOT'] ?>/admin/info">
-                    <div class="admin-info">
-                        <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/admin.png" alt="Admin Avatar" class="admin-avatar">
-                        <div>
-                            <strong>Administrator</strong> <br> <i>Hi, <?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?></i>
-                        </div>
-                    </div>
-                </a>
+                
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= $_ENV['ROOT'] ?>/admin">
                         <svg class="bi">
@@ -26,7 +23,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="<?=$_ENV['ROOT']?>/admin/orders">
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/orders">
                         <svg class="bi">
                             <use xlink:href="#file-earmark" />
                         </svg>
