@@ -74,15 +74,15 @@
                 .catch(error => console.error('Error fetching data:', error));
         });
     </script>
-    <!-- Display the error message if it exists -->
-    <?php if (!empty($data['error'])): ?>
-        <div class="alert alert-danger">
-            <?= htmlspecialchars($data['error']); ?>
-        </div>
-    <?php endif; ?>
 
     <div class="table-responsive small">
         <table class="table table-striped table-sm table-hover table-bordered caption-top">
+            <!-- Display the error message if it exists -->
+            <?php if (!empty($data['error'])): ?>
+                <div class="alert alert-danger">
+                    <?= htmlspecialchars($data['error']); ?>
+                </div>
+            <?php endif; ?>
             <caption>List of Orders</caption>
             <thead class="table-dark">
                 <tr>
