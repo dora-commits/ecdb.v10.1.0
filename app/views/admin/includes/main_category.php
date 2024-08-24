@@ -1,4 +1,4 @@
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main class="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
             <svg class="bi" width="24" height="24" fill="blue">
@@ -109,44 +109,14 @@
     <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         
     </div> -->
-    <!-- Display the error message if it exists -->
-    <?php if (!empty($data['error'])): ?>
-        <div class="alert alert-danger">
-            <?= htmlspecialchars($data['error']); ?>
-        </div>
-    <?php endif; ?>
-
-    <!-- <div class="table-responsive small">
-        <table class="table table-striped table-sm table-hover table-bordered caption-top">
-            <caption>List of Categories</caption>
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col" style="text-align: center;">No.</th>
-                    <th scope="col" style="text-align: center;">Name</th>
-                    <th scope="col" style="text-align: center;">Edit</th>
-                    <th scope="col" style="text-align: center;">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($categories)): ?>
-                    <?php foreach ($categories as $category): ?>
-                        <tr>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($category->id, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($category->id); ?>">Edit</a> </td>
-                            <td style="text-align: center;"><a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/<?php echo htmlspecialchars($category->id); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="2">No categories found.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div> -->
 
     <div class="table-responsive small">
+        <!-- Display the error message if it exists -->
+        <?php if (!empty($data['error'])): ?>
+            <div class="alert alert-danger">
+                <?= htmlspecialchars($data['error']); ?>
+            </div>
+        <?php endif; ?>
         <table class="table table-striped table-sm table-hover table-bordered caption-top">
             <caption>List of Categories</caption>
             <thead class="table-dark">
@@ -157,33 +127,96 @@
                     <th scope="col" style="text-align: center; width: 200px;">Delete</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php if (!empty($categories)): ?>
-                    <?php foreach ($categories as $category): ?>
-                        <tr>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($category->id, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;">
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/<?php echo htmlspecialchars($category->id); ?>" class="text-blue">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                            </td>
-                            <td style="text-align: center;">
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/<?php echo htmlspecialchars($category->id); ?>" onclick="return confirm('Are you sure?');" class="text-danger">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="4" style="text-align: center;">No categories found.</td>
-                    </tr>
-                <?php endif; ?>
+            <tbody id="categoryTableBody">
+                <!--  -->
             </tbody>
         </table>
+        <div class="d-flex justify-content-between">
+            <button id="prevPageBtn" class="btn btn-outline-secondary btn-sm">Previous</button>
+            <button id="nextPageBtn" class="btn btn-outline-secondary btn-sm">Next</button>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+            <a href="<?= $_ENV['ROOT'] ?>/admin/category_add" class="btn btn-primary">Add new category</a>
+        </div>
     </div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <a href="<?= $_ENV['ROOT'] ?>/admin/category_add" class="btn btn-primary">Add new category</a>
-    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentPage = 1;
+            const rowsPerPage = 5;
+            let totalPages = 1;
+            let categoryData = [];
+
+            // Fetch orders data from the API
+            fetch("<?= $_ENV['ROOT'] ?>/api/category")
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+                    categoryData = data;
+                    // console.log(categoryData);
+                    totalPages = Math.ceil(data.length / rowsPerPage);
+                    displayPage(currentPage);
+
+                    // Enable/disable buttons based on the page
+                    toggleButtons();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+
+            // Function to display a specific page
+            function displayPage(page) {
+                // console.log(categoryData);
+
+                const tbody = document.getElementById('categoryTableBody');
+                tbody.innerHTML = '';
+                const start = (page - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+
+                categoryData.slice(start, end).forEach((category, index) => {
+                    tbody.innerHTML += `
+                        <tr>
+                        <th style="text-align: center;">${category.id}</th>
+                        <td style="text-align: center;">${category.name}</td>
+                        <td style="text-align: center;">
+                            <a href="#" class="text-blue">
+                                <a href="<?= $_ENV['ROOT'] ?>/admin/category_edit/${category.id}" class="text-blue">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="<?= $_ENV['ROOT'] ?>/admin/category_delete/${category.id}" onclick="return confirm('Are you sure?');" class="text-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // Function to enable/disable buttons
+            function toggleButtons() {
+                document.getElementById('prevPageBtn').disabled = currentPage === 1;
+                document.getElementById('nextPageBtn').disabled = currentPage === totalPages;
+            }
+
+            // Handle click on "Previous" button
+            document.getElementById('prevPageBtn').addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayPage(currentPage);
+                    toggleButtons();
+                }
+            });
+
+            // Handle click on "Next" button
+            document.getElementById('nextPageBtn').addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayPage(currentPage);
+                    toggleButtons();
+                }
+            });
+        });
+    </script>
 </main>
