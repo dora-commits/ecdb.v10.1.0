@@ -1,0 +1,33 @@
+.form-signin {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    /* background: #ffffff; */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-signin .form-floating>input {
+    border-radius: 0.5rem;
+}
+
+.form-signin .form-floating>label {
+    border-radius: 0.5rem;
+}
+
+.form-signin img {
+    max-width: 100px;
+    margin-bottom: 1rem;
+}
+
+.btn-primary {
+    border-radius: 0.5rem;
+}
+
+.text-blue {
+    color: #007bff;
+}
+
+.text-blue:hover {
+    text-decoration: underline;
+}

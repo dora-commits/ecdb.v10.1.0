@@ -1,0 +1,139 @@
+.sidebar {
+    position: fixed;
+    /* Fix the sidebar position */
+    top: 0px;
+    /* Align it to the top */
+    left: 0;
+    /* Align it to the left */
+    height: 100vh;
+    /* Full viewport height */
+    /* width: 250px; */
+    overflow-y: auto;
+    /* Allow scrolling within the sidebar if content overflows */
+    background-color: #000;
+    /* Black background */
+    overflow-y: auto;
+    /* Allow scrolling within the sidebar if content overflows */
+
+    /* background: linear-gradient(145deg, #1c1f2b, #232835); */
+    color: #ffffff;
+    padding-top: 1rem;
+    /* Modern */
+    width: 20%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    /* Modern Gradient Background */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+    /* Smooth effects */
+}
+
+.sidebar ul.nav li.nav-item a.nav-link {
+    color: #007bff;
+    /* Blue link color initially */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition */
+    color: #a0a4b8;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul.nav li.nav-item a.nav-link:hover {
+    background-color: #ffa500;
+    /* Orange background on hover */
+    color: #000;
+    /* Black text color on hover */
+    background-color: #2b2f3b;
+    color: #ffffff;
+}
+
+.sidebar ul.nav li.nav-item a.nav-link svg.bi {
+    fill: #007bff;
+    /* Blue icon color initially */
+    transition: fill 0.3s;
+    /* Smooth transition */
+    transition: background-color 0.3s, color 0.3s;
+    fill: #a0a4b8;
+    transition: fill 0.3s ease;
+}
+
+.sidebar ul.nav li.nav-item a.nav-link:hover svg.bi {
+    fill: #000;
+    /* Black icon color on hover */
+    fill: #ffffff;
+}
+
+.sidebar .sidebar-heading {
+    color: #007bff;
+    /* Blue heading text initially */
+}
+
+.sidebar .sidebar-heading:hover {
+    color: #000;
+    /* Black heading text on hover */
+}
+
+
+.sidebar hr {
+    border-color: #007bff;
+    /* Blue divider initially */
+}
+
+.sidebar hr:hover {
+    border-color: #000;
+    /* Black divider on hover */
+}
+
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    /* Smooth hover effect */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Transparent buttons */
+}
+
+.sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(10px);
+    /* Smooth movement */
+}
+
+/* Saved Reports Section */
+.sidebar-heading {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .sidebar {
+    background: linear-gradient(135deg, #121212, #2c3e50);
+}
+
+.dark-theme .sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(0);
+    /* No movement in dark mode */
+}
+

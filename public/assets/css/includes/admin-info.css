@@ -1,0 +1,68 @@
+.admin-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* Makes the image circular */
+    margin-right: 10px;
+    /* Spacing between image and text */
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    /* background-color: #004085; */
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    /* Change this to your desired background color */
+    color: #ffffff;
+    /* Change this to your desired text color */
+    border-radius: 5px;
+    /* Optional: for rounded corners */
+    margin-bottom: 10px;
+    /* Adds space below the admin info */
+    transition: background 0.3s ease, transform 0.3s ease;
+    border: none;
+}
+
+.admin-info:hover {
+    background: linear-gradient(45deg, #0056b3, #003a82);
+    /* transform: scale(1.05); */
+}
+
+.admin-info strong {
+    font-size: 1.2em;
+    /* Adjust the font size of the Administrator text */
+    color: #ffc107;
+    /* Change the color of the "Administrator" text */
+}
+
+.admin-info i {
+    font-style: normal;
+    /* Change the font style of the greeting text */
+    color: #ffffff;
+    /* Change the color of the greeting text */
+}
+
+.sidebar .admin-info:hover strong,
+.sidebar .admin-info:hover i {
+    color: #ffc107;
+    /* Black text for admin info on hover */
+}
+
+.sidebar .admin-info {
+    /* background-color: #282e3b; */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sidebar .admin-info strong {
+    font-size: 1.1em;
+    color: #ffc107;
+}
+
+.sidebar .admin-avatar {
+    width: 60px;
+    height: 60px;
+}

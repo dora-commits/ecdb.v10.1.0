@@ -1,0 +1,113 @@
+.main-content {
+    /* margin-left: 250px; */
+    padding: 10px;
+    /* background-color: #f7f9fc; */
+    margin-left: 20%;
+    /* Matches sidebar width */
+    /* width: 100%; */
+    /* background-color: #f8f9fa; */
+    transition: all 0.3s ease-in-out;
+}
+
+/* .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+} */
+
+/* Main content adjustments */
+.col-md-9.ms-sm-auto.col-lg-10.px-md-4 {
+    padding-top: 20px;
+    /* Add padding if needed for spacing */
+}
+
+/* Fixed margin between sidebar and  main-content*/
+/* Remove padding from main content */
+.col-md-9.ms-sm-auto.col-lg-10.px-md-4 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0;
+}
+
+.col-md-9.ms-sm-auto.col-lg-10 {
+    flex: 1;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: flex;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.text-white {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.text-white:hover {
+    text-decoration: none;
+}
+
+.text-blue {
+    color: #004085;
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.text-blue:hover {
+    text-decoration: none;
+    /* Ensure underline is still removed on hover */
+}
+
+/* Info Page */
+.info-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+.info-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #007bff;
+    margin-bottom: 20px;
+}
+
+.info-container h1 {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.info-container p {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Chart Styling */
+canvas {
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.content {
+    /* background-color: white; */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}

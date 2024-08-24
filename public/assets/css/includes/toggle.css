@@ -1,0 +1,15 @@
+/* Theme Toggle */
+.dark-theme {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-theme .header,
+.dark-theme .footer {
+    background-color: #1b1b1b;
+}
+
+.dark-theme .content {
+    background-color: #222222;
+    color: white;
+}

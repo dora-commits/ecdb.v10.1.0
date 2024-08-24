@@ -1,0 +1,51 @@
+ /* Table, icon */
+ .table-responsive {
+    margin: 1rem;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.table a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.table a:hover {
+    text-decoration: underline;
+}
+ /* Thumb image */
+ .table img.thumb {
+    width: 100px;
+    /* Adjust the width as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: cover;
+    /* Optional: ensures image covers the area */
+}
+
+/* Icon Back to list */
+.align-bottom {
+    display: flex;
+    align-items: flex-end;
+}
+
+.icon-size {
+    font-size: 1.25rem;
+}
+
+/* Modern Table */
+.table {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 16px;
+    vertical-align: middle;
+}
