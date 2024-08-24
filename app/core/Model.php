@@ -7,7 +7,7 @@ Trait Model
 {
     use Database;
     // protected $table = 'admin';
-    protected $limit = 10;
+    protected $limit = 100;
     protected $offset = 0;
     protected $order_type = "asc"; //asc/desc
     protected $order_column = "id";

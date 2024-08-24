@@ -21,22 +21,16 @@ class OrderModel
     {
         // TODO: ordertracking
         $query = "SELECT COUNT(*) FROM ordertracking WHERE orderid = :id";
-        $result = $this->query($query, ['id' => $id]);
+        $result_1 = $this->query($query, ['id' => $id]);
+    
+        // TODO: orderitems
+        $query = "SELECT COUNT(*) FROM orderitems WHERE orderid = :id";
+        $result_2 = $this->query($query, ['id' => $id]);
 
-        if (gettype($result) != "boolean") {
-            return $result[0]->{"COUNT(*)"} > 0;
+        if (gettype($result_1) != "boolean" && gettype($result_2) != "boolean") {
+            return $result_1[0]->{"COUNT(*)"} > 0 || $result_2[0]->{"COUNT(*)"} > 0;
         }
 
         return false;
     }
-
-    /**
-     * TEST API
-     */
-    // public function for_api()
-    // {
-    //     $query = "SELECT timestamp, totalprice FROM $this->table";
-    //     $result = $this->query($query);
-    //     return $result;
-    // }
 }
