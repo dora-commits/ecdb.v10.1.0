@@ -1,6 +1,6 @@
 <!-- Main -->
 
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main class="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
             <svg class="bi" width="24" height="24" fill="blue">
@@ -97,33 +97,31 @@
     </script>
     <!--  -->
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <!-- <h1 class="h2">Categories</h1> -->
-        <kbd>
-            <caption>Add New Categories</caption>
-        </kbd>
-    </div>
+    <!-- Disable Card transform effect -->
+    <style>
+        .card:hover {
+            transform: none !important;
+        }
+    </style>
 
-    <!-- <h2>Add Category</h2> -->
-    <form action="<?= $_ENV['ROOT'] ?>/admin/category_add" method="post">
-        <div class="form-group">
-            <label for="name"><strong>Name</strong></label><br>
-            <input type="text" name="name" id="name" class="form-control" required>
-            <br>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0"><kbd>Add New Categories</kbd></h5>
+                <a class="btn btn-secondary" href="<?= $_ENV['ROOT'] ?>/admin/category">
+                    <i class="bi bi-arrow-left-circle me-2"></i>
+                    Back to List
+                </a>
+            </div>
+            <div class="card-body">
+                <form action="<?= $_ENV['ROOT'] ?>/admin/category_add" method="post">
+                    <div class="form-group mb-3">
+                        <label for="name"><strong>Name</strong></label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
-
-    <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <a href="<?= $_ENV['ROOT'] ?>/admin/category">Back to List</a>
-    </div> -->
-
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <p class="text-center mb-0">
-            <a class="text-blue d-flex align-items-center align-bottom" href="<?= $_ENV['ROOT'] ?>/admin/category">
-                <i class="bi bi-arrow-left-circle me-2 icon-size"> </i>
-                Back to List
-            </a>
-        </p>
     </div>
 </main>
