@@ -89,45 +89,112 @@
                     <th scope="col" style="text-align: center; width: 110px;">No.</th>
                     <th scope="col" style="text-align: center; width: 110px;">User</th>
                     <th scope="col" style="text-align: center; width: 110px;">Total Price</th>
-                    <th scope="col" style="text-align: center; width: 110px;">Status</th>
+                    <th scope="col" style="text-align: center; width: 140px;">Status</th>
                     <th scope="col" style="text-align: center;">Payment Mode</th>
                     <th scope="col" style="text-align: center;">Timestamp</th>
                     <th scope="col" style="text-align: center; width: 110px;">Edit</th>
                     <th scope="col" style="text-align: center; width: 110px;">Delete</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php if (!empty($orders)): ?>
-                    <?php foreach ($orders as $order): ?>
-                        <tr>
-                            <th style="text-align: center;"><?php echo htmlspecialchars($order->id, ENT_QUOTES, 'UTF-8'); ?></th>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($order->uid, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <!-- <td style="text-align: center;"><?php echo htmlspecialchars($order->totalprice, ENT_QUOTES, 'UTF-8'); ?></td> -->
-                            <td style="text-align: center;"><?php echo htmlspecialchars('$' . number_format($order->totalprice, 2, '.', ','), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($order->orderstatus, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($order->paymentmode, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td style="text-align: center;"><?php echo htmlspecialchars($order->timestamp, ENT_QUOTES, 'UTF-8'); ?></td>
-
-                            <td style="text-align: center;">
-                                <a href="#" class="text-blue">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                            </td>
-                            <td style="text-align: center;">
-                                <a href="<?= $_ENV['ROOT'] ?>/admin/orders_delete/<?php echo htmlspecialchars($order->id); ?>" onclick="return confirm('Are you sure?');" class="text-danger">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="8" style="text-align: center;">No orders found.</td>
-                    </tr>
-                <?php endif; ?>
+            <tbody id="ordersTableBody">
+                <!-- .... -->
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-between">
+        <button id="prevPageBtn" class="btn btn-outline-secondary btn-sm">Previous</button>
+        <button id="nextPageBtn" class="btn btn-outline-secondary btn-sm">Next</button>
+    </div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentPage = 1;
+            const rowsPerPage = 5;
+            let totalPages = 1;
+            let ordersData = [];
+
+            // Fetch orders data from the API
+            fetch("<?= $_ENV['ROOT'] ?>/api/orders")
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+                    ordersData = data;
+                    // console.log(ordersData);
+                    totalPages = Math.ceil(data.length / rowsPerPage);
+                    displayPage(currentPage);
+
+                    // Enable/disable buttons based on the page
+                    toggleButtons();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+
+            // console.log(ordersData);
+            // Function to format price as USD
+            function formatPrice(price) {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(price);
+            }
+            // Function to display a specific page
+            function displayPage(page) {
+                // console.log(ordersData);
+
+                const tbody = document.getElementById('ordersTableBody');
+                tbody.innerHTML = '';
+                const start = (page - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+
+                ordersData.slice(start, end).forEach((order, index) => {
+                    tbody.innerHTML += `
+                        <tr>
+                        <th style="text-align: center;">${order.id}</th>
+                        <td style="text-align: center;">${order.uid}</td>
+                        <td style="text-align: center;">${formatPrice(order.totalprice)}</td>
+                        <td style="text-align: center;">${order.orderstatus}</td>
+                        <td style="text-align: center;">${order.paymentmode}</td>
+                        <td style="text-align: center;">${order.timestamp}</td>
+                        <td style="text-align: center;">
+                            <a href="#" class="text-blue">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="<?= $_ENV['ROOT'] ?>/admin/orders_delete/${order.id}" onclick="return confirm('Are you sure?');" class="text-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // Function to enable/disable buttons
+            function toggleButtons() {
+                document.getElementById('prevPageBtn').disabled = currentPage === 1;
+                document.getElementById('nextPageBtn').disabled = currentPage === totalPages;
+            }
+
+            // Handle click on "Previous" button
+            document.getElementById('prevPageBtn').addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayPage(currentPage);
+                    toggleButtons();
+                }
+            });
+
+            // Handle click on "Next" button
+            document.getElementById('nextPageBtn').addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayPage(currentPage);
+                    toggleButtons();
+                }
+            });
+        });
+    </script>
 </main>
