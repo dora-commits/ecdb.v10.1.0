@@ -2,11 +2,12 @@
     /* margin-left: 250px; */
     padding: 10px;
     /* background-color: #f7f9fc; */
-    margin-left: 20%;
+    /* margin-left: 20%; */
     /* Matches sidebar width */
-    /* width: 100%; */
+    width: 100%;
     /* background-color: #f8f9fa; */
     transition: all 0.3s ease-in-out;
+    margin-left: 20%;
 }
 
 /* .container-fluid {
@@ -111,3 +112,9 @@ canvas {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
+
+/* .d-flex {
+    justify-content: center; 
+    align-items: center; 
+} */
+
