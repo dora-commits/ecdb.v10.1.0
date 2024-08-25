@@ -32,6 +32,6 @@
             Don't have an account? <a class="text-blue" href="<?= $_ENV['ROOT'] ?>/admin/signup">Sign up</a>
         </p>
         <!-- <a class="text-blue d-block text-center" href="<?= $_ENV['ROOT'] ?>/admin/signup">Already have an account? Login</a> -->
-        <p class="mt-5 mb-3 text-center text-body-secondary">&copy; 2024</p>
+        <p class="mt-5 mb-3 text-center text-body-secondary">&copy; 2024 - Pham Truong Giang</p>
     </form>
 </main>
