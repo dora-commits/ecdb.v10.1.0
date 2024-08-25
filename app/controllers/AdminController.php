@@ -19,8 +19,9 @@ class AdminController extends Controller
 
         $productModel = new ProductModel();
         $categoryModel = new CategoryModel();
-        $userModel = new UserModel();
+        $adminModel = new adminModel();
         $orderModel = new OrderModel();
+        $userModel = new UserModel();
 
         $data['count_products'] = $productModel->countAll();
         $data['count_category'] = $categoryModel->countAll();
@@ -58,8 +59,10 @@ class AdminController extends Controller
             $row = $admin->first(['email' => $email]);
 
             if ($row && $row->password === md5($_POST['password'])) {
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
                 // Set the session and redirect if credentials are correct
                 $_SESSION['ADMIN'] = $row;
+                $_SESSION['ADMIN']->last_login = date('Y-m-d H:i:s'); // Set current time as last login
                 redirect('admin/dashboard');
                 exit;
             }
@@ -548,8 +551,8 @@ class AdminController extends Controller
 
         $productModel = new ProductModel();
         $categoryModel = new CategoryModel();
-        $userModel = new UserModel();
         $orderModel = new OrderModel();
+        $userModel = new UserModel();
 
         $data['count_products'] = $productModel->countAll();
         $data['count_category'] = $categoryModel->countAll();
@@ -569,4 +572,77 @@ class AdminController extends Controller
             redirect('admin/login');
         }
     }
+
+    public function settings()
+    {
+        // Initialize data array
+        $data = [];
+
+        // $adminModel = new AdminModel();
+
+        // $data['admin'] = $adminModel->where();
+
+        // show($data['admin']);
+        // show($data['admin']);
+
+        // // Fetch other necessary data and then load the view
+        // $this->view('admin/dashboard', $data);
+
+        // Set the username using the middleware and display it in view section
+        if (AdminAuthMiddleware::setUsername($data) && AdminAuthMiddleware::setInfo($data) && AdminAuthMiddleware::setLastLogin($data)) {
+            // show($data['admin']);
+            $this->view('admin/settings', $data);
+        } else {
+            redirect('admin/login');
+        }
+    }
+
+
+    // public function admin_edit($id)
+    // {
+    //     $data = [];
+    //     AdminAuthMiddleware::setUsername($data);
+
+    //     $adminModel = new AdminModel();
+
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    //         $email_check['email'] = $_POST['email'];
+    //         if ($adminModel->validateEmailEdit($email_check)) {
+    //             $data = [
+    //                 'firstname' => $_POST['firstname'],
+    //                 'lastname' => $_POST['lastname'],
+    //                 'email' => $_POST['email'],
+    //                 'password' => md5($_POST['password']),
+    //             ];
+
+    //             $result = $adminModel->update($id, $data);
+
+    //             if (gettype($result) != "boolean") {
+    //                 redirect('admin/settings');
+    //             } else {
+    //                 // TODO: No checked feature
+    //                 // If update fails, display the error
+    //                 $data['error'] = 'Failed to update user.';
+    //                 $data['admin'] = $adminModel->first(['id' => $id]);
+    //                 $this->view('admin/settings', $data);
+    //             }
+    //         } else {
+    //             // show($adminModel->errors);
+    //             $data['error'] = $adminModel->errors['email'];
+    //             $data['admin'] = $adminModel->first(['id' => $id]);
+    //             $this->view('admin/settings', $data);
+    //             return;
+    //         }
+    //     } else {
+    //         $data['admin'] = $adminModel->first(['id' => $id]);
+
+    //         if (!$data['admin']) {
+    //             $data['error'] = 'Admin not found.';
+    //             $this->view('admin/settings', $data);
+    //         } else {
+    //             $this->view('admin/settings', $data);
+    //         }
+    //     }
+    // }
 }
