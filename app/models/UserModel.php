@@ -21,13 +21,17 @@ class UserModel
     {
         // TODO: reviews
         $query = "SELECT COUNT(*) FROM reviews WHERE pid = :id";
-        $result = $this->query($query, ['id' => $id]);
+        $result_1 = $this->query($query, ['id' => $id]);
 
-        if (gettype($result) != "boolean") {
-            return $result[0]->{"COUNT(*)"} > 0;
+        // TODO:  wishlist
+        $query = "SELECT COUNT(*) FROM wishlist WHERE pid = :id";
+        $result_2 = $this->query($query, ['id' => $id]);
+
+        if (gettype($result_1) != "boolean" && gettype($result_2) != "boolean") {
+            return $result_1[0]->{"COUNT(*)"} > 0 || $result_2[0]->{"COUNT(*)"} > 0;
         }
 
-        // TODO:  wishlist, usersmeta
+        // TODO: usersmeta
         // ... 
 
         return false;
