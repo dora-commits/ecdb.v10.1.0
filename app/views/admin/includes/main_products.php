@@ -96,7 +96,7 @@
                         <td style="text-align: center;">
                             <img src="<?= $_ENV['ROOT'] ?>/assets/uploads/${product.thumb}" alt="${product.thumb}>" class="thumb">
                         </td>
-                        <td style="text-align: center;">${product.description}</td>
+                        <td style="text-align: justify;">${product.description}</td>
                         <td style="text-align: center;">
                             <a href="#" class="text-blue">
                                 <a href="<?= $_ENV['ROOT'] ?>/admin/products_edit/${product.id}" class="text-blue">
