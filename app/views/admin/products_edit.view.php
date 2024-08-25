@@ -2,30 +2,31 @@
 <html lang="en" data-bs-theme="auto">
 
 <!-- Head -->
-<?php require_once (__DIR__."/includes/head.php"); ?>
-<!-- Body -->
+<?php require_once(__DIR__ . "/includes/head.php"); ?>
 
 <body>
     <!-- Toggle -->
-    <?php require_once (__DIR__."/includes/toggle.php");?>
-    
+    <?php require_once(__DIR__ . "/includes/toggle.php"); ?>
+
     <!-- Header -->
-    <!-- ... -->
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <?php require_once(__DIR__ . "/includes/sidebar.php"); ?>
+        </aside>
 
-            <!-- Sidebar -->
-            <?php require_once (__DIR__."/includes/sidebar.php");?>
-
+        <div class="main-content"> 
+            <!-- Header -->
             <!-- Main -->
-            <?php require_once (__DIR__."/includes/main_products_edit.php");?>
-
+            <?php require_once(__DIR__ . "/includes/main_products_edit.php"); ?>
             <!-- Footer -->
-            <?php require_once (__DIR__."/includes/footer.php");?>
+            <?php require_once(__DIR__ . "/includes/footer.php"); ?>
         </div>
     </div>
-    
+
     <!-- Script -->
-    <?php require_once (__DIR__."/includes/script.php");?>
+    <?php require_once(__DIR__ . "/includes/script.php"); ?>
 </body>
+
+</html>
