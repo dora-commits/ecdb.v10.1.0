@@ -25,7 +25,7 @@ Developed a e-commerce platform for managing various product categories such as 
 | **Security, Session and Middleware** | Applied comprehensive security practices, including password hashing, SQL injection prevention, and protection against XSS/CSRF attacks to ensure application security and data integrity. Utilized PHP session management and middleware to dynamically handle user-specific data, enhancing the flexibility and functionality of the admin interface. | - |
 
 ## Technologies
-- **Backend**: PHP (requirement: non-framework)
+- **Backend**: PHP (*requirement of this project*: non-framework)
 - **Frontend**: CSS, JavaScript
 - **Database**: MySQL
 - **Architecture**: MVC (Model-View-Controller)
