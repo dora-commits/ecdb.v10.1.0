@@ -109,6 +109,13 @@
 
     <div class="container mt-4">
         <div class="card">
+            <!-- Display the error message if it exists -->
+            <?php if (!empty($data['error'])): ?>
+                <div class="alert alert-danger">
+                    <?= htmlspecialchars($data['error']); ?>
+                </div>
+            <?php endif; ?>
+            
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0"><kbd>Update User</kbd></h5>
                 <a class="btn btn-secondary" href="<?= $_ENV['ROOT'] ?>/admin/users">
@@ -117,7 +124,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <form action="<?= $_ENV['ROOT'] ?>/admin/users_edit/<?php echo htmlspecialchars($data['users']->id); ?>" method="post">
+                <form id="userForm" action="<?= $_ENV['ROOT'] ?>/admin/users_edit/<?php echo htmlspecialchars($data['users']->id); ?>" method="post">
                     <div class="form-group mb-3">
                         <label for="email"><strong>Email</strong></label>
                         <input type="text" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($data['users']->email); ?>" required>
@@ -133,9 +140,17 @@
         </div>
     </div>
 
-    <?php if (isset($data['error'])): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo htmlspecialchars($data['error'], ENT_QUOTES, 'UTF-8'); ?>
-        </div>
-    <?php endif; ?>
+    <script>
+        // JavaScript to handle the form submission
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            var emailInput = document.getElementById('email');
+
+            if (!emailInput.checkValidity()) {
+                // Prevent form submission
+                event.preventDefault();
+                // Custom error alert
+                alert("Please enter a valid email address.");
+            }
+        });
+    </script>
 </main>

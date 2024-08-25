@@ -36,4 +36,24 @@ class UserModel
 
         return false;
     }
+
+    public function validateEmailEdit($data)
+    {
+        $this->errors = [];
+        
+        $user = new UserModel();
+        $data_check['email'] = $data['email'];;
+        
+        // Validate email
+        if (empty($data['email'])) {
+            $this->errors['email'] = "Email is required";
+        } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['email'] = "Email is not valid";
+        } elseif ($user->where($data_check)) {
+            $this->errors['email'] = "Email already exists";
+        }
+
+        // Return validation result
+        return empty($this->errors);
+    }
 }

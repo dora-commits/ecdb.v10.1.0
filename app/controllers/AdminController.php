@@ -12,7 +12,8 @@
  */
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         // Initialize data array
         $data = [];
 
@@ -26,22 +27,23 @@ class AdminController extends Controller
         $data['count_users'] = $userModel->countAll();
         $data['count_orders'] = $orderModel->countAll();
 
-        
+
         // // Fetch other necessary data and then load the view
         // $this->view('admin/dashboard', $data);
-        
+
         // Set the username using the middleware and display it in view section
-        if(AdminAuthMiddleware::setUsername($data)){
+        if (AdminAuthMiddleware::setUsername($data)) {
             $this->view('admin/dashboard', $data);
         } else {
             redirect('admin/login');
         }
     }
 
-    public function login(){
+    public function login()
+    {
 
         // Call the middleware for login section
-        AdminAuthMiddleware::handle(); 
+        AdminAuthMiddleware::handle();
 
         // Initialize data array with a default username
         $data = [];
@@ -70,8 +72,9 @@ class AdminController extends Controller
         $this->view('admin/login', $data);
     }
 
-    public function logout(){
-        if(!empty($_SESSION['ADMIN']))
+    public function logout()
+    {
+        if (!empty($_SESSION['ADMIN']))
             unset($_SESSION['ADMIN']);
         redirect('admin/login');
     }
@@ -80,22 +83,20 @@ class AdminController extends Controller
     {
         $data = [];
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST")
-        {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $admin =  new AdminModel;
-            if ($admin->validateSignup($_POST))
-            {
+            if ($admin->validateSignup($_POST)) {
                 $data = [
                     'firstname' => $_POST['firstname'],
                     'lastname' => $_POST['lastname'],
                     'email' => $_POST['email'],
                     'password' => md5($_POST['password'])
                 ];
-                
+
                 $admin->insert($data);
                 redirect('admin/dashboard');
             }
-    
+
             $data['errors'] = $admin->errors;
         }
         $this->view('admin/signup', $data);
@@ -221,7 +222,7 @@ class AdminController extends Controller
             // TODO: No checked feature
             // Handle GET request to fetch the existing category data
             $data['category'] = $categoryModel->first(['id' => $id]);
-            
+
             if (!$data['category']) {
                 // Handle case where category is not found
                 $data['error'] = 'Category not found.';
@@ -243,7 +244,7 @@ class AdminController extends Controller
 
         // Check if the category has references
         if ($categoryModel->hasReferences($id)) {
-            $category = $categoryModel->where(['id'=> $id]);
+            $category = $categoryModel->where(['id' => $id]);
 
             $name_category = $category[0]->{"name"};
 
@@ -339,7 +340,7 @@ class AdminController extends Controller
             // TODO: No checked feature
             // Handle GET request to fetch the existing product data
             $data['products'] = $productModel->first(['id' => $id]);
-            
+
             if (!$data['products']) {
                 // Handle case where product is not found
                 $data['error'] = 'Product not found.';
@@ -350,7 +351,8 @@ class AdminController extends Controller
         }
     }
 
-    public function products_delete($id){
+    public function products_delete($id)
+    {
         $data = [];
         AdminAuthMiddleware::setUsername($data);
 
@@ -358,7 +360,7 @@ class AdminController extends Controller
 
         // Check if the product has references
         if ($productModel->hasReferences($id)) {
-            $product = $productModel->where(['id'=> $id]);
+            $product = $productModel->where(['id' => $id]);
 
             $name_product = $product[0]->{"name"};
 
@@ -391,16 +393,13 @@ class AdminController extends Controller
 
     public function users_edit($id)
     {
+
         $data = [];
         AdminAuthMiddleware::setUsername($data);
 
         $userModel = new UserModel();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate and sanitize the input data
-            
-            // $timestamp = $_POST['timestamp'];
-            // $formattedTimestamp = date('Y-m-d H:i:s', strtotime($timestamp));
 
             $timestamp = $_POST['timestamp'];
 
@@ -410,34 +409,46 @@ class AdminController extends Controller
             } else {
                 $data['error'] = 'Invalid timestamp.';
                 $data['users'] = $userModel->first(['id' => $id]);
+                // $data['users'] = $id;
+                // $data['users'] = $userModel->where(['id' => $id]);
                 $this->view('admin/users_edit', $data);
                 return;
             }
 
-            $data = [
-                'email' => $_POST['email'],
-                'password' => md5($_POST['password']),
-                'timestamp' => $formattedTimestamp,
-            ];
+            $email_check['email'] = $_POST['email'];
+            if ($userModel->validateEmailEdit($email_check)) {
+                $data = [
+                    'email' => $_POST['email'],
+                    'password' => md5($_POST['password']),
+                    'timestamp' => $formattedTimestamp,
+                ];
 
-            // Update the user
-            $result = $userModel->update($id, $data);
+                $result = $userModel->update($id, $data);
 
-            if (gettype($result) != "boolean") {
-                // Redirect to the user list after a successful update
-                redirect('admin/users');
+                if (gettype($result) != "boolean") {
+                    redirect('admin/users');
+                } else {
+                    // TODO: No checked feature
+                    // If update fails, display the error
+                    $data['error'] = 'Failed to update user.';
+                    $data['users'] = $userModel->first(['id' => $id]);
+                    // $data['users'] = $userModel->where(['id' => $id]);
+                    $this->view('admin/users_edit', $data);
+                }
             } else {
-                // TODO: No checked feature
-                // If update fails, display the error
-                $data['error'] = 'Failed to update user.';
+                // show($userModel->errors);
+                $data['error'] = $userModel->errors['email'];
+                // $data['users'] = $userModel->where(['id' => $id]);
                 $data['users'] = $userModel->first(['id' => $id]);
+                // show($data);
                 $this->view('admin/users_edit', $data);
+                return;
             }
         } else {
-            // TODO: No checked feature
             // Handle GET request to fetch the existing user data
             $data['users'] = $userModel->first(['id' => $id]);
-            
+            // $data['users'] = $userModel->where(['id' => $id]);
+
             if (!$data['users']) {
                 // Handle case where user is not found
                 $data['error'] = 'User not found.';
@@ -457,7 +468,7 @@ class AdminController extends Controller
 
         // Check if the category has references
         if ($userModel->hasReferences($id)) {
-            $users = $userModel->where(['id'=> $id]);
+            $users = $userModel->where(['id' => $id]);
 
             $email_user = $users[0]->{"email"};
 
@@ -479,7 +490,8 @@ class AdminController extends Controller
         }
     }
 
-    public function info(){
+    public function info()
+    {
         // Initialize data array
         $data = [];
         AdminAuthMiddleware::setUsername($data);
@@ -505,7 +517,7 @@ class AdminController extends Controller
 
         // Check if the order has references
         if ($orderModel->hasReferences($id)) {
-            $orders = $orderModel->where(['id'=> $id]);
+            $orders = $orderModel->where(['id' => $id]);
 
             $id_order = $orders[0]->{"id"};
             $uid_order = $orders[0]->{"uid"};
@@ -529,5 +541,3 @@ class AdminController extends Controller
         }
     }
 }
-
-
