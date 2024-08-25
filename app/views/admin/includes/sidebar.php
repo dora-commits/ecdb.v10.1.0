@@ -119,7 +119,7 @@
 
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/settings">
                         <svg class="bi">
                             <use xlink:href="#gear-wide-connected" />
                         </svg>
