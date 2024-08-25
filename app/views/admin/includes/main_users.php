@@ -2,12 +2,48 @@
 
 <main class="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <a class="nav-link d-flex align-items-center gap-2" href="<?= $_ENV['ROOT'] ?>/admin/category" style="font-weight: bold; font-size: 1.1rem; color: blue;">
-            <svg class="bi" width="24" height="24" fill="blue">
-                <use xlink:href="#people" />
-            </svg>
-            Customers
-        </a>
+        <div class="d-flex align-items-center gap-2">
+            <a class="nav-link d-flex align-items-center gap-2"
+                href="<?= $_ENV['ROOT'] ?>/admin/dashboard"
+                style="font-weight: bold; font-size: 1.1rem; color: #007bff; transition: all 0.3s ease;">
+
+                <svg class="bi" width="24" height="24" fill="currentColor" style="transition: transform 0.3s ease;">
+                    <use xlink:href="#house-fill" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <span style="font-size: 1.2rem; color: #007bff;">&#9679;</span> <!-- This is a dot icon -->
+            <a class="nav-link d-flex align-items-center gap-2"
+                href="<?= $_ENV['ROOT'] ?>/admin/users"
+                style="font-weight: bold; font-size: 1.1rem; color: #007bff; transition: all 0.3s ease;">
+
+                <svg class="bi" width="24" height="24" fill="currentColor" style="transition: transform 0.3s ease;">
+                    <use xlink:href="#people" />
+                </svg>
+                <span>Customers</span>
+            </a>
+        </div>
+
+        <style>
+            .nav-link:hover {
+                color: #0056b3;
+                text-decoration: none;
+            }
+
+            .nav-link:hover svg {
+                transform: scale(1.2);
+                fill: #0056b3;
+            }
+
+            .nav-link span {
+                display: inline-block;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-link:hover span {
+                transform: translateX(5px);
+            }
+        </style>
 
         <!--  -->
         <div class="btn-toolbar mb-2 mb-md-0">
