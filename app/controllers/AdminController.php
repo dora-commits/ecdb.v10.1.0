@@ -540,4 +540,33 @@ class AdminController extends Controller
             $this->view('admin/orders', $data);
         }
     }
+
+    public function reports()
+    {
+        // Initialize data array
+        $data = [];
+
+        $productModel = new ProductModel();
+        $categoryModel = new CategoryModel();
+        $userModel = new UserModel();
+        $orderModel = new OrderModel();
+
+        $data['count_products'] = $productModel->countAll();
+        $data['count_category'] = $categoryModel->countAll();
+        $data['count_users'] = $userModel->countAll();
+        $data['count_orders'] = $orderModel->countAll();
+        $data['categories'] = $categoryModel->findAll();
+        $data['users'] = $userModel->findAll();
+
+
+        // // Fetch other necessary data and then load the view
+        // $this->view('admin/dashboard', $data);
+
+        // Set the username using the middleware and display it in view section
+        if (AdminAuthMiddleware::setUsername($data)) {
+            $this->view('admin/reports', $data);
+        } else {
+            redirect('admin/login');
+        }
+    }
 }
