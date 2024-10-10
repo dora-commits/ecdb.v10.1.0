@@ -12,7 +12,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0"><kbd>Add New Products</kbd></h5>
+                <!-- <h5 class="card-title mb-0"><kbd>Add New Products</kbd></h5> -->
                 <a class="btn btn-secondary" href="<?= $_ENV['ROOT'] ?>/admin/products">
                     <i class="bi bi-arrow-left-circle me-2"></i>
                     Back to List
@@ -45,7 +45,7 @@
                         <label for="description"><strong>Description</strong></label>
                         <textarea name="description" id="description" class="form-control" style="height: 100px;" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
                 </form>
             </div>
         </div>
