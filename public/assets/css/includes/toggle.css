@@ -13,3 +13,32 @@
     background-color: #222222;
     color: white;
 }
+
+/* Modern button styling */
+.modern-btn {
+    background-color: transparent;
+    border: 2px solid var(--bs-primary);
+    border-radius: 50px; /* Rounded corners */
+    padding: 10px 20px;
+    color: var(--bs-primary);
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-size: 1.1rem; /* Slightly larger font */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between icon and text */
+}
+
+.modern-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.modern-btn:hover {
+    background-color: var(--bs-primary); /* Change background color on hover */
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+}
+
+.modern-btn:hover svg {
+    transform: rotate(20deg); /* Rotate icon slightly on hover */
+}
