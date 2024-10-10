@@ -67,3 +67,70 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
+
+/*  */
+
+.modern-card {
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modern-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.count-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+.card-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.circle-card {
+    height: 280px;
+    width: 280px;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.circle-background {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    padding: 45px;
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    margin: 25px;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-right: 15px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
