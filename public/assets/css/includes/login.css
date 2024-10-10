@@ -1,0 +1,18 @@
+/* Full page background with modern design */
+.bg-modern {
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.5), rgba(233, 236, 239, 0.5)), /* Subtle gradient with 50% opacity */
+                url('../../uploads/login.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Dark theme styles */
+[data-bs-theme="dark"] .bg-modern {
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.5), rgba(233, 236, 239, 0.5)), url('../../uploads/login.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}

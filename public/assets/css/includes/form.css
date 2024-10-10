@@ -1,17 +1,32 @@
 .form-signin {
-    max-width: 600px;
-    margin: auto;
-    padding: 2rem;
-    /* background: #ffffff; */
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Default max width for larger devices */
+    width: 100%; /* Allow the form to fill available width */
+    margin: auto; /* Center the form */
+    padding: 2rem; /* Padding for internal spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+    background-color: #ffffff; /* Light theme background */
+    color: #000000; /* Light theme text color */
+    opacity: 0.7;
 }
 
-.form-signin .form-floating>input {
+@media (max-width: 768px) { /* For tablets and small laptops */
+    .form-signin {
+        max-width: 90%; /* Allow the form to take 90% width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) { /* For mobile phones */
+    .form-signin {
+        max-width: 90%; /* Allow the form to take 90% width on phones */
+    }
+}
+
+.form-signin .form-floating > input {
     border-radius: 0.5rem;
 }
 
-.form-signin .form-floating>label {
+.form-signin .form-floating > label {
     border-radius: 0.5rem;
 }
 
@@ -22,6 +37,8 @@
 
 .btn-primary {
     border-radius: 0.5rem;
+    background-color: #007bff; /* Default button color */
+    color: #ffffff; /* Default button text color */
 }
 
 .text-blue {
@@ -30,4 +47,30 @@
 
 .text-blue:hover {
     text-decoration: underline;
+}
+
+/* Dark theme styles */
+[data-bs-theme="dark"] .form-signin {
+    background-color: #343a40; /* Dark background for the form */
+    color: #ffffff; /* Light text color for the form */
+    opacity: 0.8;
+}
+
+[data-bs-theme="dark"] .form-signin .form-floating > input {
+    background-color: #495057; /* Dark input background */
+    color: #ffffff; /* Light input text color */
+    border: 1px solid #6c757d; /* Dark border color */
+}
+
+[data-bs-theme="dark"] .form-signin .form-floating > label {
+    color: #ffffff; /* Light label color */
+}
+
+[data-bs-theme="dark"] .btn-primary {
+    background-color: #007bff; /* Keep the button color */
+    color: #ffffff; /* Ensure button text is white */
+}
+
+[data-bs-theme="dark"] .text-blue {
+    color: #66b3ff; /* Lighter blue for dark theme */
 }

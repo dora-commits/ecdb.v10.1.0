@@ -118,6 +118,9 @@
     <link href="<?= $_ENV['ROOT'] ?>/assets/css/includes/table.css" rel="stylesheet">
 
     <link href="<?= $_ENV['ROOT'] ?>/assets/css/includes/form.css" rel="stylesheet">
+    
+    <link href="<?= $_ENV['ROOT'] ?>/assets/css/includes/login.css" rel="stylesheet">
+
 
 
     <!-- Custom styles for this template -->

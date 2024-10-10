@@ -5,7 +5,7 @@
 <?php require_once (__DIR__."/includes/head.php"); ?>
 <!-- Body -->
 
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
+<body class="d-flex align-items-center py-4 bg-body-tertiary bg-modern">
     <!-- Toggle -->
     <?php require_once (__DIR__."/includes/toggle.php");?>
     
