@@ -153,7 +153,7 @@
             <?php endif; ?>
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0"><kbd>Update User</kbd></h5>
+                <!-- <h5 class="card-title mb-0"><kbd>Update User</kbd></h5> -->
                 <a class="btn btn-secondary" href="<?= $_ENV['ROOT'] ?>/admin/users">
                     <i class="bi bi-arrow-left-circle me-2"></i>
                     Back to List
@@ -170,7 +170,7 @@
                         <!-- TODO: Make Invalid Timestamp by change type type="datetime-local" to type="text" and write sth wrong time-->
                         <input type="datetime-local" name="timestamp" id="timestamp" class="form-control" value="<?php echo htmlspecialchars(date('Y-m-d\TH:i', strtotime($data['users']->timestamp))); ?>" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">Update User</button>
                 </form>
             </div>
         </div>
