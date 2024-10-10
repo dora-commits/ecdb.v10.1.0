@@ -1,4 +1,5 @@
 .main-content {
+    position: relative;
     /* margin-left: 250px; */
     padding: 10px;
     /* background-color: #f7f9fc; */
@@ -7,8 +8,25 @@
     width: 100%;
     /* background-color: #f8f9fa; */
     transition: all 0.3s ease-in-out;
-    margin-left: 20%;
+    margin-left: 18%;
 }
+
+.main-content {
+    position: relative;
+    padding: 10px;
+    /* width: 82%; */
+    margin-left: 18%;
+    opacity: 0; /* Khởi tạo độ mờ */
+    transform: translateY(20px); /* Đưa nội dung xuống phía dưới */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Thay đổi độ mờ và vị trí từ từ */
+}
+
+/* Class này sẽ được thêm vào để làm nội dung hiện ra */
+.main-content.visible {
+    opacity: 1; /* Hiện rõ nội dung */
+    transform: translateY(0); /* Đưa nội dung trở về vị trí ban đầu */
+}
+
 
 /* .container-fluid {
     padding-left: 0;

@@ -1,4 +1,13 @@
 <!-- Sidebar -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const mainContent = document.querySelector('.main-content');
+    // Tạo hiệu ứng xuất hiện
+    setTimeout(() => {
+        mainContent.classList.add('visible'); // Thêm class để làm nội dung hiện rõ
+    }, 500); // Thay đổi 100ms để tạo cảm giác mượt mà
+});
+</script>
 
 <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
     <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
@@ -11,6 +20,7 @@
                 </div>
             </div>
         </a>
+        
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
                 

@@ -11,17 +11,21 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    background: linear-gradient(45deg, #ff9800, #ff5722);
-    color: #ffffff; /* White text color for both themes */
+    /* background: linear-gradient(45deg, #ff9800, #ff5722); */
+    background: #ffffff;
+    /* color: #ffffff;  */
+    color:darkgray;
     border-radius: 5px;
     margin-bottom: 10px;
     transition: background 0.3s ease, transform 0.3s ease;
     border: none;
+    transform: scale(0.96);
 }
 
 .admin-info:hover {
-    background: linear-gradient(45deg, #ff7e00, #ff4500);
-    transform: scale(1.05);
+    /* background: linear-gradient(45deg, #ff7e00, #ff4500); */
+    background: #ffffff;
+    transform: scale(0.92);
 }
 
 .admin-info strong {
@@ -46,6 +50,7 @@
     color: #ffc107;
     /* Black text for admin info on hover */
     color:#ffffff;
+    color: darkgray;
 }
 
 .sidebar .admin-info {
@@ -59,6 +64,7 @@
 .sidebar .admin-info strong {
     font-size: 1.1em;
     color: #ffc107;
+    color: darkgray;
 }
 
 .sidebar .admin-avatar {

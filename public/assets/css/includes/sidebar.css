@@ -12,7 +12,7 @@
     color: #ffffff;
     padding-top: 1rem;
     /* Modern */
-    width: 20%;
+    width: 18%;
     min-height: 100vh;
     /* background: linear-gradient(135deg, #2c3e50, #4ca1af); */
     /* background: linear-gradient(145deg, #1c1f2b, #232835); */
@@ -23,30 +23,41 @@
     transition: all 0.3s ease-in-out;
     /* border-radius: 8px; */
     overflow-y: auto;
-}
 
+     /* Thêm border-radius ở đây */
+    border-radius: 0 5px 5px 0; /* Chỉ bo góc bên phải */
+
+    /* Thêm box-shadow ở đây */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25); 
+    /* box-shadow: 2px 0 10px rgba(255, 255, 255, 0.8);  */
+
+}
 .sidebar ul.nav li.nav-item a.nav-link {
     /* color: #007bff; */
     color: #a0a4b8;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 50px;
+    
     /* transition: background-color 0.3s, color 0.3s; */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar ul.nav li.nav-item a.nav-link:hover {
-    background-color: #ffa500;
+    /* background-color: #ffa500; */
+    background-color: #ffffff;
     /* Orange background on hover */
     /* color: #000; */
     /* Black text color on hover */
     /* background-color: #2b2f3b; */
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: #00008B;
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 .sidebar ul.nav li.nav-item a.nav-link svg.bi {
     fill: #007bff;
     fill: #a0a4b8;
-    fill: #000;
+    /* fill: #000; */
     /* Blue icon color initially */
     /* transition: fill 0.3s; */
     /* Smooth transition */
@@ -58,5 +69,6 @@
     fill: #000;
     /* Black icon color on hover */
     fill: #ffffff;
+    fill:#00008B;
 }
 
