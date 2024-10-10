@@ -143,7 +143,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0"><kbd>Add New Categories</kbd></h5>
+                <!-- <h5 class="card-title mb-0"><kbd>Add New Categories</kbd></h5> -->
                 <a class="btn btn-secondary" href="<?= $_ENV['ROOT'] ?>/admin/category">
                     <i class="bi bi-arrow-left-circle me-2"></i>
                     Back to List
@@ -155,7 +155,7 @@
                         <label for="name"><strong>Name</strong></label>
                         <input type="text" name="name" id="name" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
                 </form>
             </div>
         </div>
