@@ -1,0 +1,70 @@
+/* Theme Toggle */
+.dark-theme {
+    background-color: #121212;
+    color: white;
+    
+}
+
+.dark-theme .header,
+.dark-theme .footer {
+    background-color: #1b1b1b;
+}
+
+.dark-theme .content {
+    background-color: #222222;
+    color: white;
+}
+
+/* Modern button styling */
+.modern-btn {
+    background-color: transparent;
+    border: 2px solid var(--bs-primary);
+    border-radius: 50px; /* Rounded corners */
+    padding: 10px 20px;
+    color: var(--bs-primary);
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-size: 1.1rem; /* Slightly larger font */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between icon and text */
+}
+
+.modern-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.modern-btn:hover {
+    background-color: var(--bs-primary); /* Change background color on hover */
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+}
+
+.modern-btn:hover svg {
+    transform: rotate(20deg); /* Rotate icon slightly on hover */
+}
+
+.position-fixed {
+    z-index: 1050; 
+}
+
+[data-bs-theme="dark"] .admin-info {
+    background-color:#353b48;
+    color:darkgray;
+}
+
+[data-bs-theme="dark"] .admin-info strong,
+[data-bs-theme="dark"] .admin-info i {
+    color: darkgray;
+}
+
+[data-bs-theme="dark"] .admin-info:hover {
+    background-color: #353b48;
+}
+
+/* Dark Theme Hover Styles */
+[data-bs-theme="dark"] .sidebar ul.nav li.nav-item a.nav-link:hover {
+    background-color: #2b2f3b; 
+    color: darkgray; 
+    box-shadow: 1px 0 1px rgba(255, 255, 255, 0.5); 
+}

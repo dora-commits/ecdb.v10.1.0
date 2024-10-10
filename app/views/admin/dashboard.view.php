@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="auto">
 
 <!-- Head -->
-<?php require_once(__DIR__ . "/includes/head.php"); ?>
+<?php require_once(__DIR__ . "/includes/head_dash.php"); ?>
 
 <body>
     <!-- Toggle -->
