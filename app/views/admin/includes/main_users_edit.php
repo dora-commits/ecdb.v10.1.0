@@ -62,7 +62,7 @@
 
     <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="215"></canvas> -->
 
-    <canvas class="my-4 w-100" id="user_order_chart" width="900" height="250"></canvas>
+    <canvas class="my-4 w-100" id="user_order_chart_edit" width="900" height="250"></canvas>
 
     <script>
         async function fetchData() {
@@ -100,7 +100,7 @@
 
                 console.log(labels);
 
-                const ctx = document.getElementById('user_order_chart').getContext('2d');
+                const ctx = document.getElementById('user_order_chart_edit').getContext('2d');
                 new Chart(ctx, {
                     type: 'bar',
                     data: {

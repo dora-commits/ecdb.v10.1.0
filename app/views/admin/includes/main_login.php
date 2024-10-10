@@ -11,7 +11,7 @@
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating mb-3">
-            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input name="email" type="email" class="form-control" id="floatingInput" autocomplete="on" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating mb-3">
@@ -21,7 +21,7 @@
 
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" value="remember-me"> Accept terms
+                <input name="checkbox" type="checkbox" value="remember-me"> Accept terms
             </label>
         </div>
 

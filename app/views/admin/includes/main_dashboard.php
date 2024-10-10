@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <canvas class="my-4 w-100" id="ordersChart" width="900" height="170"></canvas>
+    <canvas class="my-4 w-100" id="ordersChart_dash" width="900" height="170"></canvas>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -69,7 +69,7 @@
 
                     // console.log(prices);
 
-                    const ctx = document.getElementById('ordersChart').getContext('2d');
+                    const ctx = document.getElementById('ordersChart_dash').getContext('2d');
 
                     new Chart(ctx, {
                         type: 'line',
