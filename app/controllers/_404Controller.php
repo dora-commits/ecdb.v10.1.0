@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  class HomeController
+ *  class _404Controller
  */
 class _404Controller extends Controller
 {

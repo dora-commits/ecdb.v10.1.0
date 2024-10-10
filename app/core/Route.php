@@ -29,6 +29,8 @@ class Route
             }
         }
 
+        // print($this->controller);
+
         require_once '../app/controllers/' . $this->controller . '.php';
 
         $this->controller = new $this->controller;
@@ -38,7 +40,14 @@ class Route
                 $this->method = $url[1];
                 unset($url[1]);
             }
+            if (!empty($url[1])){
+                $this->controller = '_404Controller';
+                require_once '../app/controllers/' . $this->controller . '.php';
+                $this->controller = new $this->controller;
+            }
         }
+
+        // print($this->method);
 
         $this->params = $url ? array_values($url) : [];
 

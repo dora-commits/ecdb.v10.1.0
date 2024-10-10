@@ -1,13 +1,6 @@
 <?php
 
 /**
- * TODO: can not use namespace while extends other class
- */
-// namespace App\Controllers;
-
-// use App\Middleware\AdminAuthMiddleware;
-
-/**
  *  class AdminController
  */
 class AdminController extends Controller
@@ -27,10 +20,6 @@ class AdminController extends Controller
         $data['count_category'] = $categoryModel->countAll();
         $data['count_users'] = $userModel->countAll();
         $data['count_orders'] = $orderModel->countAll();
-
-
-        // // Fetch other necessary data and then load the view
-        // $this->view('admin/dashboard', $data);
 
         // Set the username using the middleware and display it in view section
         if (AdminAuthMiddleware::setUsername($data)) {
@@ -114,32 +103,6 @@ class AdminController extends Controller
         $this->view('admin/category', $data);
     }
 
-    // public function category()
-    // {
-    //     $data = [];
-    //     AdminAuthMiddleware::setUsername($data);
-    //     $categoryModel = new CategoryModel();
-
-    //     // Handle ordering
-    //     // $orderColumn = isset($_GET['order_column']) ? $_GET['order_column'] : 'name';
-    //     // $orderType = isset($_GET['order_type']) ? $_GET['order_type'] : 'asc';
-
-    //     // $validColumns = ['id', 'name'];
-    //     // $validTypes = ['asc', 'desc'];
-
-    //     // if (in_array($orderColumn, $validColumns)) {
-    //     //     $categoryModel->setOrderColumn($orderColumn);
-    //     // }
-
-    //     // if (in_array($orderType, $validTypes)) {
-    //     //     $categoryModel->setOrderType($orderType);
-    //     // }
-
-    //     // Fetch categories
-    //     $data['categories'] = $categoryModel->findAll();
-    //     $this->view('admin/category', $data);
-    // }
-
     // Method to handle the creation of a category
     public function category_add()
     {
@@ -168,33 +131,6 @@ class AdminController extends Controller
         }
     }
 
-    // Method to handle updating a category
-    // public function updateCategory($id)
-    // {
-    //     $categoryModel = new CategoryModel();
-
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $data = [
-    //             'name' => $_POST['name']
-    //         ];
-
-    //         $result = $categoryModel->update($id, $data);
-
-    //         if ($result) {
-    //             // Redirect or notify success
-    //             redirect('admin/category');
-    //         } else {
-    //             // Handle error
-    //             $data['errors'] = 'Failed to update category.';
-    //             $this->view('admin/category', $data);
-    //         }
-    //     } else {
-    //         // Fetch existing category data
-    //         $data['categories'] = $categoryModel->first(['id' => $id]);
-    //         $this->view('admin/category', $data);
-    //     }
-    // }
-
     public function category_edit($id)
     {
         $data = [];
@@ -215,14 +151,12 @@ class AdminController extends Controller
                 // Redirect to the category list after a successful update
                 redirect('admin/category');
             } else {
-                // TODO: No checked feature
                 // If update fails, display the error
                 $data['error'] = 'Failed to update category.';
                 $data['category'] = $categoryModel->first(['id' => $id]);
                 $this->view('admin/category_edit', $data);
             }
         } else {
-            // TODO: No checked feature
             // Handle GET request to fetch the existing category data
             $data['category'] = $categoryModel->first(['id' => $id]);
 
@@ -333,14 +267,12 @@ class AdminController extends Controller
                 // Redirect to the product list after a successful update
                 redirect('admin/products');
             } else {
-                // TODO: No checked feature
                 // If update fails, display the error
                 $data['error'] = 'Failed to update product.';
                 $data['products'] = $productModel->first(['id' => $id]);
                 $this->view('admin/products_edit', $data);
             }
         } else {
-            // TODO: No checked feature
             // Handle GET request to fetch the existing product data
             $data['products'] = $productModel->first(['id' => $id]);
 
@@ -431,7 +363,6 @@ class AdminController extends Controller
                 if (gettype($result) != "boolean") {
                     redirect('admin/users');
                 } else {
-                    // TODO: No checked feature
                     // If update fails, display the error
                     $data['error'] = 'Failed to update user.';
                     $data['users'] = $userModel->first(['id' => $id]);
@@ -439,7 +370,6 @@ class AdminController extends Controller
                     $this->view('admin/users_edit', $data);
                 }
             } else {
-                // show($userModel->errors);
                 $data['error'] = $userModel->errors['email'];
                 // $data['users'] = $userModel->where(['id' => $id]);
                 $data['users'] = $userModel->first(['id' => $id]);
@@ -450,7 +380,6 @@ class AdminController extends Controller
         } else {
             // Handle GET request to fetch the existing user data
             $data['users'] = $userModel->first(['id' => $id]);
-            // $data['users'] = $userModel->where(['id' => $id]);
 
             if (!$data['users']) {
                 // Handle case where user is not found
@@ -561,10 +490,6 @@ class AdminController extends Controller
         $data['categories'] = $categoryModel->findAll();
         $data['users'] = $userModel->findAll();
 
-
-        // // Fetch other necessary data and then load the view
-        // $this->view('admin/dashboard', $data);
-
         // Set the username using the middleware and display it in view section
         if (AdminAuthMiddleware::setUsername($data)) {
             $this->view('admin/reports', $data);
@@ -596,53 +521,4 @@ class AdminController extends Controller
             redirect('admin/login');
         }
     }
-
-
-    // public function admin_edit($id)
-    // {
-    //     $data = [];
-    //     AdminAuthMiddleware::setUsername($data);
-
-    //     $adminModel = new AdminModel();
-
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    //         $email_check['email'] = $_POST['email'];
-    //         if ($adminModel->validateEmailEdit($email_check)) {
-    //             $data = [
-    //                 'firstname' => $_POST['firstname'],
-    //                 'lastname' => $_POST['lastname'],
-    //                 'email' => $_POST['email'],
-    //                 'password' => md5($_POST['password']),
-    //             ];
-
-    //             $result = $adminModel->update($id, $data);
-
-    //             if (gettype($result) != "boolean") {
-    //                 redirect('admin/settings');
-    //             } else {
-    //                 // TODO: No checked feature
-    //                 // If update fails, display the error
-    //                 $data['error'] = 'Failed to update user.';
-    //                 $data['admin'] = $adminModel->first(['id' => $id]);
-    //                 $this->view('admin/settings', $data);
-    //             }
-    //         } else {
-    //             // show($adminModel->errors);
-    //             $data['error'] = $adminModel->errors['email'];
-    //             $data['admin'] = $adminModel->first(['id' => $id]);
-    //             $this->view('admin/settings', $data);
-    //             return;
-    //         }
-    //     } else {
-    //         $data['admin'] = $adminModel->first(['id' => $id]);
-
-    //         if (!$data['admin']) {
-    //             $data['error'] = 'Admin not found.';
-    //             $this->view('admin/settings', $data);
-    //         } else {
-    //             $this->view('admin/settings', $data);
-    //         }
-    //     }
-    // }
 }
