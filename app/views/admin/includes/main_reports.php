@@ -60,58 +60,75 @@
         </div>
     </div>
 
-    <canvas class="my-4 w-100" id="ordersChart_report" width="900" height="170"></canvas>
-    <canvas class="my-4 w-100" id="category_product_chart_report" width="900" height="250"></canvas>
+    <canvas class="my-4 w-100" id="ordersChart_report" width="900" height="250"></canvas>
+    <canvas class="my-4 w-100" id="category_product_chart_report" width="900" height="200"></canvas>
     <canvas class="my-4 w-100" id="user_order_chart_report" width="900" height="250"></canvas>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch("<?= $_ENV['ROOT'] ?>/api/orders")
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(order => new Date(order.timestamp).toLocaleString());
+                const prices = data.map(order => order.totalprice);
 
-            fetch("<?= $_ENV['ROOT'] ?>/api/orders")
-                .then(response => response.json())
-                .then(data => {
+                const ctx = document.getElementById('ordersChart_report').getContext('2d');
 
-                    const labels = data.map(order => new Date(order.timestamp).toLocaleString());
-                    const prices = data.map(order => order.totalprice);
+                // Tạo gradient cho phần nền
+                const gradient = ctx.createLinearGradient(0, 0, 0, 200); // Chiều cao 200
+                gradient.addColorStop(0, 'rgba(255, 255, 255, 0)'); // Trong suốt ở trên
+                gradient.addColorStop(1, 'rgba(0, 20, 177, 0.5)'); // Màu ở dưới
 
-                    // console.log(prices);
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total Price of Orders Tracking',
+                            data: prices,
+                            borderColor: '#FFFFFF', // Màu đường là trắng
+                            backgroundColor: gradient, // Sử dụng gradient cho phần dưới đường
+                            borderWidth: 4, // Độ dày của đường
+                            pointBackgroundColor: '#FFC300', // Màu của các điểm trên đường
+                            pointBorderColor: '#FFFFFF', // Màu viền của các điểm
+                            pointRadius: 5, // Kích thước của các điểm
+                            pointBorderWidth: 2, // Độ dày viền của các điểm
+                            fill: true, // Đổ đầy phần dưới đường
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true, // Giữ tỷ lệ chiều cao và chiều rộng như ban đầu
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 20, 177, 0.2)', // Màu cho các đường lưới
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(0, 20, 177, 0.1)', // Màu cho các đường lưới trên trục x
+                                }
+                            }
+                        }
+                    }
+                });
 
-                    const ctx = document.getElementById('ordersChart_report').getContext('2d');
-
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Total Price of Orders Tracking',
-                                data: prices,
-                                // borderColor: 'rgb(75, 192, 192)',
-                                borderColor: '#0014b1',
-                                backgroundColor: 'rgba(75, 192, 192, 1)',
-                                // backgroundColor: '#9BD0F5',
-                                borderWidth: 4, // Make the line thicker
-                                pointBackgroundColor: '#FFC300', // Color of the points on the line
-                                pointBorderColor: '#0014b1', // Border color of the points
-                                pointRadius: 5, // Size of the points
-                                pointBorderWidth: 2, // Border width of the points
-                            }]
-                        },
-                        options: {}
-                    });
-                    // Export button functionality
-                    document.getElementById('exportBtn').addEventListener('click', function() {
-                        const wb = XLSX.utils.book_new();
-                        const wsData = [
-                            ['Date', 'Total Price'], // Header row
-                            ...data.map(order => [new Date(order.timestamp).toLocaleString(), order.totalprice])
-                        ];
-                        const ws = XLSX.utils.aoa_to_sheet(wsData);
-                        XLSX.utils.book_append_sheet(wb, ws, 'Orders Data');
-                        XLSX.writeFile(wb, 'OrdersData.xlsx');
-                    });
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        });
+                // Chức năng nút xuất dữ liệu
+                document.getElementById('exportBtn').addEventListener('click', function() {
+                    const wb = XLSX.utils.book_new();
+                    const wsData = [
+                        ['Date', 'Total Price'], // Dòng tiêu đề
+                        ...data.map(order => [new Date(order.timestamp).toLocaleString(), order.totalprice])
+                    ];
+                    const ws = XLSX.utils.aoa_to_sheet(wsData);
+                    XLSX.utils.book_append_sheet(wb, ws, 'Orders Data');
+                    XLSX.writeFile(wb, 'OrdersData.xlsx');
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
     </script>
 
     <script>
