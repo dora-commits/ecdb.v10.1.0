@@ -43,3 +43,28 @@
 .modern-btn:hover svg {
     transform: rotate(20deg); /* Rotate icon slightly on hover */
 }
+
+.position-fixed {
+    z-index: 1050; 
+}
+
+[data-bs-theme="dark"] .admin-info {
+    background-color:#353b48;
+    color:darkgray;
+}
+
+[data-bs-theme="dark"] .admin-info strong,
+[data-bs-theme="dark"] .admin-info i {
+    color: darkgray;
+}
+
+[data-bs-theme="dark"] .admin-info:hover {
+    background-color: #353b48;
+}
+
+/* Dark Theme Hover Styles */
+[data-bs-theme="dark"] .sidebar ul.nav li.nav-item a.nav-link:hover {
+    background-color: #2b2f3b; 
+    color: darkgray; 
+    box-shadow: 1px 0 1px rgba(255, 255, 255, 0.5); 
+}
