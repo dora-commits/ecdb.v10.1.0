@@ -96,8 +96,6 @@
                     values.push(totalPrices[userId]);
                 });
 
-                // console.log(labels);
-
                 const ctx = document.getElementById('user_order_chart').getContext('2d');
                 new Chart(ctx, {
                     type: 'bar',
@@ -106,26 +104,80 @@
                         datasets: [{
                             label: "Total Price per UserID ($)",
                             data: values,
-                            // borderColor: '#0014b1',
-                            borderColor: 'rgb(255, 159, 64)',
-                            // backgroundColor: 'rgba(75, 192, 192, 1)',
-                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                            borderWidth: 4,
-                            pointBackgroundColor: '#FFC300',
-                            pointBorderColor: '#0014b1',
-                            pointRadius: 5,
-                            pointBorderWidth: 2,
-                            barThickness: 100,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.9)',
+                                'rgba(255, 99, 132, 0.9)',
+                                'rgba(255, 206, 86, 0.9)',
+                                'rgba(75, 192, 192, 0.9)',
+                                'rgba(153, 102, 255, 0.9)',
+                                'rgba(255, 159, 64, 0.9)'
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 3,
+                            barThickness: 70, 
                         }]
                     },
                     options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Total Price per User ID',
+                                font: {
+                                    size: 18,
+                                    weight: 'bold'
+                                },
+                                color: '#fff'
+                            },
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'top',
+                                color: '#333',
+                                font: {
+                                    weight: 'bold',
+                                    size: 14
+                                }
+                            }
+                        },
                         scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 12
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.8)',
+                                    lineWidth: 1,
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 14
+                                    }
+                                },
+                                grid: {
+                                    display: true
+                                }
                             }
                         }
-                    }
+                    },
+                    plugins: [ChartDataLabels],
                 });
+
                 // Export button functionality
                 document.getElementById('exportBtn').addEventListener('click', function() {
                     const wb = XLSX.utils.book_new();
@@ -144,6 +196,7 @@
 
         fetchData();
     </script>
+
 
     <div class="table-responsive small">
         <!-- Display the error message if it exists -->
