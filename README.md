@@ -1,3 +1,3 @@
 <div align="center">
-![Admin Interface](/public/assets/uploads/login.jpg)
-</div>
+<img src="https://github.com/dora-commits/ecdb.v10.1.0/blob/main/public/assets/uploads/login.jpg" align="center" height="" width="300" />
+</div>  
