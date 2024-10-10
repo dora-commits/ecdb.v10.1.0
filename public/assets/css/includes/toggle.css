@@ -68,3 +68,18 @@
     color: darkgray; 
     box-shadow: 1px 0 1px rgba(255, 255, 255, 0.5); 
 }
+
+/* Quy tắc cho chế độ tối */
+[data-bs-theme="dark"] .card {
+    background-color: #343a40; /* Màu nền cho card trong chế độ tối */
+    color: #ffffff; /* Màu chữ trong chế độ tối */
+}
+
+[data-bs-theme="dark"] .card-header {
+    background-color: #495057; /* Màu nền cho card-header trong chế độ tối */
+}
+
+[data-bs-theme="dark"] .card-body {
+    background-color: #343a40; /* Màu nền cho card-body trong chế độ tối */
+    color: #ffffff; /* Màu chữ trong chế độ tối */
+}
