@@ -2,27 +2,24 @@
 
 <main class="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <div class="d-flex align-items-center gap-2">
-            <a class="nav-link d-flex align-items-center gap-2"
-                href="<?= $_ENV['ROOT'] ?>/admin/dashboard"
-                style="font-weight: bold; font-size: 1.1rem; color: #007bff; transition: all 0.3s ease;">
-
-                <svg class="bi" width="24" height="24" fill="currentColor" style="transition: transform 0.3s ease;">
-                    <use xlink:href="#house-fill" />
-                </svg>
-                <span>Dashboard</span>
-            </a>
-            <span style="font-size: 1.2rem; color: #007bff;">&#9679;</span> <!-- This is a dot icon -->
-            <a class="nav-link d-flex align-items-center gap-2"
-                href="<?= $_ENV['ROOT'] ?>/admin/users"
-                style="font-weight: bold; font-size: 1.1rem; color: #007bff; transition: all 0.3s ease;">
-
-                <svg class="bi" width="24" height="24" fill="currentColor" style="transition: transform 0.3s ease;">
-                    <use xlink:href="#people" />
-                </svg>
-                <span>Customers</span>
-            </a>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" onclick="window.location.href='<?= $_ENV['ROOT'] ?>/admin/dashboard';" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-2" style="font-weight: bold; font-size: 1rem;">
+                    <svg class="bi" width="24" height="24" fill="currentColor">
+                        <use xlink:href="#house-fill" />
+                    </svg>
+                    Dashboard
+                </button>
+                <!-- <span style="font-size: 1.2rem; color: #007bff;">&#9679;</span> This is a dot icon -->
+                <button type="button" onclick="window.location.href='<?= $_ENV['ROOT'] ?>/admin/users';" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-2" style="font-weight: bold; font-size: 1rem;">
+                    <svg class="bi" width="24" height="24" fill="currentColor">
+                        <use xlink:href="#people" />
+                    </svg>
+                    Customers
+                </button>
+            </div>
         </div>
+
 
         <style>
             .nav-link:hover {
